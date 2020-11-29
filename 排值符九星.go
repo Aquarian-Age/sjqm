@@ -157,9 +157,10 @@ func ZhiFuStar(xunShouNumber int, dun string, sqly map[int]string) (string, map[
 	//根据时辰旬首 排值符九星
 	zf, _ := 旬遁原始宫位值符值使(dun, sqly)
 	starArr := 九星排序(zf)
-	xArr := 时辰配宫(xunShouNumber) //值符随时干
+	xArr := 时辰配宫(xunShouNumber) //值符随时干 如果xunShouNumber==5即值符落中宫 在delE函数实现让它寄坤二宫
 	xArr = del(xArr)            //中宫天禽配九星的天禽顺序
 
+	//fmt.Printf("-->delE:时辰配宫:%v\n", xArr)
 	//九星配时辰(九宫)
 	l1 := len(starArr)
 	l2 := len(xArr)
@@ -183,8 +184,20 @@ func ZhiFuStar(xunShouNumber int, dun string, sqly map[int]string) (string, map[
 func del(x []int) []int {
 	for i := 0; i < len(x); i++ {
 		if x[i] == 5 && i == 0 { //5在首位
+			//fmt.Printf("-->i=%d x[]i]=%d\n", i, x[i])
 			head := x[i+1:]
 			x = head
+			//fmt.Printf("-->del5:%d\n", x)
+			//找坤二宫数字 再排序
+			for j := 0; j < len(x); j++ {
+				if x[j] == 2 {
+					xx1 := x[:j]
+					xx2 := x[j:]
+					x = append(xx2, xx1...)
+					//fmt.Printf("--del5re:%d\n", x)
+					break
+				}
+			}
 			break
 		}
 		if x[i] == 5 && i == len(x)-1 { //5在末尾
@@ -235,8 +248,7 @@ func 旬遁原始宫位值符值使(dun string, sqly map[int]string) (zf string,
 			break
 		}
 	}
-	//fmt.Printf("-->值符:%s\n", zf)
-
+	//fmt.Printf("-->值符:%s 六甲旬遁:%v\n", zf, dunN) //六甲原始宫位旬遁
 	return
 }
 
