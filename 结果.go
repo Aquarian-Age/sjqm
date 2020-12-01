@@ -69,7 +69,7 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 	//fmt.Printf("八神:%v\n", bsmap)
 
 	////////////////////////////////////////////////结果
-	//值符(九星) 值使(八门) 暗干支 六甲旬遁 八神 六仪三奇
+	//starmap:值符(九星) zhishimap:值使(八门) agzmap:暗干支 dunmap:六甲旬遁 bsmap:八神 sqly:六仪三奇
 	var arr1, arr2, arr3, arr4, arr5, arr6, arr7, arr8, arr9 []string
 	arr1 = append(arr1, starmap[1], zhishimap[1], agzmap[1], dunmap[1], bsmap[1], sqly[1]) //一宫信息
 	arr2 = append(arr2, starmap[2], zhishimap[2], agzmap[2], dunmap[2], bsmap[2], sqly[2])
