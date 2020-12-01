@@ -9,10 +9,11 @@ var jz60 = ganzhi.MakeJZ60()
 type JG struct {
 	Name   string //八卦名
 	Number int    //九宫数字 戴九履一 二四为肩 六八为足 左三右七
-	ZF     string //值符
-	ZS     string //八门
-	QY     string //三奇六仪 排地盘局之后的三奇六仪
-	Agz    string //暗干支
+	ZF     string //值符九星
+	ZS     string //值使八门
+	WX     string //五行属性
+	//QY     string //三奇六仪 排地盘局之后的三奇六仪
+	//Agz    string //暗干支
 }
 
 //九宫排盘结果信息
