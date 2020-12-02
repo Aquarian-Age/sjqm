@@ -1,6 +1,7 @@
 package sjqm
 
 import (
+	"sort"
 	"strings"
 )
 
@@ -155,7 +156,7 @@ func XunShouHour(xunshou, hgz string, xsGZArr []string, sqly map[int]string) (xu
 //排值符九星
 func ZhiFuStar(xunShouNumber int, dun string, sqly map[int]string) (string, map[int]string, map[int]string) {
 	//根据时辰旬首 排值符九星
-	zf, _ := 旬遁原始宫位值符值使(dun, sqly)
+	zf, dunN := 旬遁原始宫位值符值使(dun, sqly)
 	starArr := 九星排序(zf)
 	xArr := 时辰配宫(xunShouNumber) //值符随时干 如果xunShouNumber==5即值符落中宫 在delE函数实现让它寄坤二宫
 	xArr = del(xArr)            //中宫天禽配九星的天禽顺序
@@ -176,8 +177,8 @@ func ZhiFuStar(xunShouNumber int, dun string, sqly map[int]string) (string, map[
 	//fmt.Printf("-->值使九星配九宫:%v\n", starmap)
 
 	///地盘原始宫位的三奇六仪
-	starDun := 地盘三奇六仪配九星(starArr, sqly)
-	return zf, starmap, starDun
+	starDunmap := 地盘三奇六仪配九星(starArr, sqly, dunN, starmap)
+	return zf, starmap, starDunmap
 }
 
 //剥离5
@@ -213,22 +214,120 @@ func del(x []int) []int {
 		}
 	}
 	x = append(x, 5)
-	//fmt.Printf("-->x5:%v\n", x)
 	return x
 }
 
 //地盘三奇六仪配九宫 九星配宫的数字对应地盘三奇六仪的宫位信息
-func 地盘三奇六仪配九星(starArr []string, sqly map[int]string) map[int]string {
-	var starDun = make(map[int]string)
-	for i := 0; i < len(starArr); i++ {
-		for k, v := range sqly {
-			if i+1 == k {
-				starDun[k] = v
+func 地盘三奇六仪配九星(starArr []string, sqly map[int]string, dunN int, starmap map[int]string) map[int]string {
+
+	var starQYmap = make(map[string]string)
+	//先排序三奇六仪的key
+	var keys []int
+	for key := range sqly {
+		keys = append(keys, key)
+	}
+	sort.Ints(keys)
+	if dunN == 5 {
+		x := []int{1, 8, 3, 4, 9, 2, 7, 6, 5}
+		for ki := 0; ki < len(keys); ki++ {
+			if keys[ki] == dunN && keys[0] == dunN { //中宫在首位
+				//	fmt.Printf("-->中宫在首位 从索引值:%d %d宫位%s起始开始排六仪三奇\n", ki, keys[ki], sqly[keys[ki]])
+				break
+			}
+			if keys[ki] == dunN && keys[len(keys)-1] == 5 {
+				//	fmt.Printf("-->中宫在末尾 从索引值:%d %d宫位%s起始开始排六仪三奇\n", ki, keys[ki], sqly[keys[ki]])
+				xk1 := keys[:ki]
+				xk2 := keys[ki:]
+				keys = append(xk2, xk1...)
+				break
+			}
+			if keys[ki] == dunN {
+				//fmt.Printf("-->中宫不在首与尾 从索引值:%d %d宫位%s起始开始排六仪三奇\n", ki, keys[ki], sqly[keys[ki]])
+				xk1 := keys[:ki]
+				xk2 := keys[ki:]
+				keys = append(xk2, xk1...)
+				break
+			}
+		}
+		/////
+		for xi := 0; xi < len(x); xi++ {
+			//如果中宫在首位...
+
+			//如果中宫在末尾....
+
+			//中宫不在首位与末尾...
+			if x[xi] == dunN { //定位宫索引
+				x1 := x[:xi]
+				x2 := x[xi+1:]
+				x = append(x2, x1...) //剥离5出来
+				for ji := 0; ji < len(x); ji++ {
+					if x[ji] == 2 { //寄坤二宫
+						xj1 := x[:ji]
+						xj2 := x[ji:]
+						x = append(xj2, xj1...)
+						break
+					}
+				}
+				break
+			}
+		}
+		x = append(x, 5) //附加中宫到末尾
+		///
+		for stari := 0; stari < len(starArr); stari++ {
+			for xi := stari; xi < len(x); xi++ {
+				starQYmap[starArr[stari]] = sqly[x[xi]]
+				break
+			}
+		}
+		//fmt.Printf("-->九星配奇仪:%v\n", starQYmap)
+	}
+	if dunN != 5 {
+		x := []int{1, 8, 3, 4, 9, 2, 7, 6}
+		for id := 0; id < len(keys); id++ {
+			if keys[id] == dunN { //这里的值是5的话要重新考虑计算排序中宫
+				//	fmt.Printf("-->从索引值:%d %d宫位%s起始开始排六仪三奇\n", id, keys[id], sqly[keys[id]])
+				keys1 := keys[:id]
+				keys2 := keys[id:]
+				keys = append(keys2, keys1...)
+				break
+			}
+		}
+		//keys = append(keys, 5) //附加中宫到末尾
+		//fmt.Printf("-->六仪三奇排序后的keys:%v\n", keys)
+		//再排宫位
+		for xi := 0; xi < len(x); xi++ {
+			if x[xi] == dunN { //定位宫索引
+				x1 := x[:xi]
+				x2 := x[xi:]
+				x = append(x2, x1...)
+				x = append(x, 5) //附加中宫到末尾
+				break
+			}
+		}
+		//x = append(x, 5) //附加中宫到末尾
+		//fmt.Printf("-->按照值符初始宫位排序九宫顺序:%d\n", x)
+		//六仪三奇配九星
+		for stari := 0; stari < len(starArr); stari++ {
+			for xi := stari; xi < len(x); xi++ {
+				starQYmap[starArr[stari]] = sqly[x[xi]]
+				break
+			}
+		}
+		//fmt.Printf("-->九星配奇仪:%v\n", starQYmap)
+	}
+
+	//匹配九宫数字
+	var starDunmap = make(map[int]string)
+	for sn, starName := range starmap {
+		for k, v := range starQYmap {
+			if strings.EqualFold(starName, k) {
+				starDunmap[sn] = v
 			}
 		}
 	}
-	//fmt.Printf("-->starDun:%v\n", starDun)
-	return starDun
+	//fmt.Printf("-->starDunmap:%v\n", starDunmap)
+
+	return starDunmap
 }
 
 //根据时辰所在旬遁找出原宫位的值符值使
@@ -272,7 +371,7 @@ func 九星排序(zf string) []string {
 			jiux = append(s2, s1...)
 		}
 	}
-	starArr := append(jiux, "天禽") //放到最后 寄坤二宫?
+	starArr := append(jiux, "天禽") //放到最后 寄坤二宫
 	//fmt.Printf("-->九星排序: %v\n", starArr)
 	return starArr
 }
@@ -293,3 +392,56 @@ func 时辰配宫(xunShouNumber int) []int {
 	}
 	return x
 }
+
+/*	for id := 0; id < len(keys); id++ {
+		if keys[id] == dunN { //这里的值是5的话要重新考虑计算排序中宫
+			fmt.Printf("-->从索引值:%d %d宫位%s起始开始排六仪三奇\n", id, keys[id], sqly[keys[id]])
+			keys1 := keys[:id]
+			keys2 := keys[id:]
+			keys = append(keys2, keys1...)
+			fmt.Println(keys)
+			for xi := 0; xi < len(keys); xi++ { //中宫先拿出来最后放到末尾
+				if keys[0] == 5 { //首位是5
+					keys = keys[1:]
+					keys = append(keys, 5) //附加中宫到末尾
+					break
+				}
+				if keys[len(keys)-1] == 5 { //末尾是5
+					keys = keys[:len(keys)-1]
+					keys = append(keys, 5) //附加中宫到末尾
+					break
+				}
+				if keys[xi] == 5 {
+					keys1 := keys[:xi]
+					keys2 := keys[xi+1:]
+					keys = append(keys2, keys1...)
+					keys = append(keys, 5) //附加中宫到末尾
+					break
+				}
+			}
+			break
+		}
+	}
+	//keys = append(keys, 5) //附加中宫到末尾
+	fmt.Printf("-->六仪三奇排序后的keys:%v\n", keys)
+	//再排宫位
+	for xi := 0; xi < len(x); xi++ {
+		if x[xi] == dunN { //定位宫索引
+			x1 := x[:xi]
+			x2 := x[xi:]
+			x = append(x2, x1...)
+			x = append(x, 5) //附加中宫到末尾
+			break
+		}
+	}
+	//x = append(x, 5) //附加中宫到末尾
+	//fmt.Printf("-->按照值符初始宫位排序九宫顺序:%d\n", x)*/
+//六仪三奇配九星 （如果值符在天禽五宫这里还得改）
+/*	var starQYmap = make(map[string]string)
+	for stari := 0; stari < len(starArr); stari++ {
+		for xi := stari; xi < len(x); xi++ {
+			starQYmap[starArr[stari]] = sqly[x[xi]]
+			break
+		}
+	}
+	fmt.Printf("-->九星配奇仪:%v\n", starQYmap)*/

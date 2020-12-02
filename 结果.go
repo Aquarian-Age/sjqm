@@ -47,7 +47,7 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 	//fmt.Printf("时辰旬首落%d宫\n", xsN)
 
 	//值符
-	zf, starmap, dunmap := ZhiFuStar(xunShouNumber, dun, sqly)
+	zf, starmap, starQYmap := ZhiFuStar(xunShouNumber, dun, sqly)
 	//fmt.Printf("值符:%s\n九星:%v\n原宫位奇仪:%v\n", zf, starmap, starDun)
 	//fmt.Printf("值符:%s\n九星:%v\n", zf, starmap)
 
@@ -69,17 +69,17 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 	//fmt.Printf("八神:%v\n", bsmap)
 
 	////////////////////////////////////////////////结果
-	//starmap:值符(九星) zhishimap:值使(八门) agzmap:暗干支 dunmap:六甲旬遁 bsmap:八神 sqly:六仪三奇
+	//starmap:值符(九星) zhishimap:值使(八门) agzmap:暗干支 starQYmap:奇仪配九星 bsmap:八神 sqly:六仪三奇
 	var arr1, arr2, arr3, arr4, arr5, arr6, arr7, arr8, arr9 []string
-	arr1 = append(arr1, starmap[1], zhishimap[1], agzmap[1], dunmap[1], bsmap[1], sqly[1]) //一宫信息
-	arr2 = append(arr2, starmap[2], zhishimap[2], agzmap[2], dunmap[2], bsmap[2], sqly[2])
-	arr3 = append(arr3, starmap[3], zhishimap[3], agzmap[3], dunmap[3], bsmap[3], sqly[3])
-	arr4 = append(arr4, starmap[4], zhishimap[4], agzmap[4], dunmap[4], bsmap[4], sqly[4])
-	arr5 = append(arr5, starmap[5], zhishimap[5], agzmap[5], dunmap[5], bsmap[5], sqly[5])
-	arr6 = append(arr6, starmap[6], zhishimap[6], agzmap[6], dunmap[6], bsmap[6], sqly[6])
-	arr7 = append(arr7, starmap[7], zhishimap[7], agzmap[7], dunmap[7], bsmap[7], sqly[7])
-	arr8 = append(arr8, starmap[8], zhishimap[8], agzmap[8], dunmap[8], bsmap[8], sqly[8])
-	arr9 = append(arr9, starmap[9], zhishimap[9], agzmap[9], dunmap[9], bsmap[9], sqly[9]) //九宫信息
+	arr1 = append(arr1, starmap[1], zhishimap[1], agzmap[1], starQYmap[1], bsmap[1], sqly[1]) //一宫信息
+	arr2 = append(arr2, starmap[2], zhishimap[2], agzmap[2], starQYmap[2], bsmap[2], sqly[2])
+	arr3 = append(arr3, starmap[3], zhishimap[3], agzmap[3], starQYmap[3], bsmap[3], sqly[3])
+	arr4 = append(arr4, starmap[4], zhishimap[4], agzmap[4], starQYmap[4], bsmap[4], sqly[4])
+	arr5 = append(arr5, starmap[5], zhishimap[5], agzmap[5], starQYmap[5], bsmap[5], sqly[5])
+	arr6 = append(arr6, starmap[6], zhishimap[6], agzmap[6], starQYmap[6], bsmap[6], sqly[6])
+	arr7 = append(arr7, starmap[7], zhishimap[7], agzmap[7], starQYmap[7], bsmap[7], sqly[7])
+	arr8 = append(arr8, starmap[8], zhishimap[8], agzmap[8], starQYmap[8], bsmap[8], sqly[8])
+	arr9 = append(arr9, starmap[9], zhishimap[9], agzmap[9], starQYmap[9], bsmap[9], sqly[9]) //九宫信息
 
 	g := new(G)
 	g = &G{
