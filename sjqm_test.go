@@ -302,6 +302,36 @@ func Test值符随时干(t *testing.T) {
 }
 
 //原宫位值符
+func Test值符(t *testing.T) {
+
+	//2020101906f -->庚子 丁亥 庚辰 辛巳
+	//阴遁 上元 5局 旬首:甲戌 值符:天辅
+	dun := "己"
+	sqly := map[int]string{1: "壬", 2: "辛", 3: "庚", 4: "己", 5: "戊", 6: "乙", 7: "丙", 8: "丁", 9: "癸"}
+
+	wantZF := "天辅"
+	wantN := 4
+
+	zf, N := SelfZF(dun, sqly)
+	if !strings.EqualFold(zf, wantZF) {
+		t.Errorf("SelfZF(%s,%v)=%s 希望结果:%s\n", dun, sqly, zf, wantZF)
+	}
+	if N != wantN {
+		t.Errorf("SelfZF(%s,%v)=%d 希望结果:%d\n", dun, sqly, N, wantN)
+	}
+}
+
+//九星排序
+func Test九星排序(t *testing.T) {
+	zhifu := "天辅"
+	wantStarArr := []string{"天辅", "天英", "天芮", "天柱", "天心", "天蓬", "天任", "天冲", "天禽"}
+	starArr := SortStar(zhifu)
+
+	if !reflect.DeepEqual(starArr, wantStarArr) {
+		t.Errorf("SortStar(%s)=%v 期望值:%v\n", zhifu, starArr, wantStarArr)
+	}
+
+}
 
 //////////////
 //方法

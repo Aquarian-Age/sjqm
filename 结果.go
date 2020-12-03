@@ -1,6 +1,7 @@
 package sjqm
 
 import (
+	"fmt"
 	"time"
 
 	"liangzi.local/nongli/solar"
@@ -42,11 +43,13 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 
 	//时辰旬首对应的九宫位置数字
 	xunShouNumber, _, dun := XunShouHour(xunshou, hgz, xsGZArr, sqly)
-	//fmt.Printf("%s时 值符在%d宫位置 遁:%s\n", gzName, xunShouNumber, dun)
+	//fmt.Printf("值符在%d宫位置 遁:%s\n", xunShouNumber, dun)
 
 	//值符
 	zf, dunN := SelfZF(dun, sqly)
+	//fmt.Printf("值符:%s 原始宫位数字:%d\n", zf, dunN)
 	starArr := SortStar(zf)
+	fmt.Printf("九星排序:%s\n", starArr)
 
 	//九星配宫
 	starmap := ZhiFuStar(xunShouNumber, starArr)
