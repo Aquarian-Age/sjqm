@@ -43,19 +43,22 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 	//时辰旬首对应的九宫位置数字
 	xunShouNumber, _, dun := XunShouHour(xunshou, hgz, xsGZArr, sqly)
 	//fmt.Printf("%s时 值符在%d宫位置 遁:%s\n", gzName, xunShouNumber, dun)
-	//xsN := FindXSN(xunshou, sqly)
-	//fmt.Printf("时辰旬首落%d宫\n", xsN)
 
 	//值符
-	zf, starmap, starQYmap := ZhiFuStar(xunShouNumber, dun, sqly)
-	//fmt.Printf("值符:%s\n九星:%v\n原宫位奇仪:%v\n", zf, starmap, starDun)
+	zf, dunN := SelfZF(dun, sqly)
+	starArr := SortStar(zf)
+
+	//九星配宫
+	starmap := ZhiFuStar(xunShouNumber, starArr)
 	//fmt.Printf("值符:%s\n九星:%v\n", zf, starmap)
+
+	//六仪三奇配九星
+	starQYmap := StarQY(starArr, sqly, dunN, starmap)
 
 	//暗干支
 	zfn := FindZFNumber(zf)       //值符原始宫位
 	gzarr := FindXSGZArr(xunshou) //旬首干支数组
 	agzmap := AnGZ(zfn, gzarr, yinyangN)
-	//agzmap := AnGZ(zf, xunshou, yinyangN)
 	//fmt.Printf("暗干支:%v\n", agzmap)
 
 	//值使八门

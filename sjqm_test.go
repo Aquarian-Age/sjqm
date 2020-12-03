@@ -301,6 +301,9 @@ func Test值符随时干(t *testing.T) {
 
 }
 
+//原宫位值符
+
+//////////////
 //方法
 func Test门破(t *testing.T) {
 	g := G{
