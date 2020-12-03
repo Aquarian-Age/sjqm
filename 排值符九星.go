@@ -230,17 +230,17 @@ func 地盘三奇六仪配九星(starArr []string, sqly map[int]string, dunN int
 	if dunN == 5 {
 		x := []int{1, 8, 3, 4, 9, 2, 7, 6, 5}
 		for ki := 0; ki < len(keys); ki++ {
-			if keys[ki] == dunN && keys[0] == dunN { //中宫在首位
-				//	fmt.Printf("-->中宫在首位 从索引值:%d %d宫位%s起始开始排六仪三奇\n", ki, keys[ki], sqly[keys[ki]])
-				break
-			}
-			if keys[ki] == dunN && keys[len(keys)-1] == 5 {
-				//	fmt.Printf("-->中宫在末尾 从索引值:%d %d宫位%s起始开始排六仪三奇\n", ki, keys[ki], sqly[keys[ki]])
-				xk1 := keys[:ki]
-				xk2 := keys[ki:]
-				keys = append(xk2, xk1...)
-				break
-			}
+			/*			if keys[ki] == dunN && keys[0] == dunN { //中宫在首位
+						//	fmt.Printf("-->中宫在首位 从索引值:%d %d宫位%s起始开始排六仪三奇\n", ki, keys[ki], sqly[keys[ki]])
+						break
+					}*/
+			/*			if keys[ki] == dunN && keys[len(keys)-1] == 5 {
+						//	fmt.Printf("-->中宫在末尾 从索引值:%d %d宫位%s起始开始排六仪三奇\n", ki, keys[ki], sqly[keys[ki]])
+						xk1 := keys[:ki]
+						xk2 := keys[ki:]
+						keys = append(xk2, xk1...)
+						break
+					}*/
 			if keys[ki] == dunN {
 				//fmt.Printf("-->中宫不在首与尾 从索引值:%d %d宫位%s起始开始排六仪三奇\n", ki, keys[ki], sqly[keys[ki]])
 				xk1 := keys[:ki]
