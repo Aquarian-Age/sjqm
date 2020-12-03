@@ -1,7 +1,6 @@
 package sjqm
 
 import (
-	"fmt"
 	"time"
 
 	"liangzi.local/nongli/solar"
@@ -49,7 +48,7 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 	zf, dunN := SelfZF(dun, sqly)
 	//fmt.Printf("值符:%s 原始宫位数字:%d\n", zf, dunN)
 	starArr := SortStar(zf)
-	fmt.Printf("九星排序:%s\n", starArr)
+	//fmt.Printf("九星排序:%s\n", starArr)
 
 	//九星配宫
 	starmap := ZhiFuStar(xunShouNumber, starArr)
@@ -75,7 +74,7 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 	//fmt.Printf("八神:%v\n", bsmap)
 
 	////////////////////////////////////////////////结果
-	//starmap:值符(九星) zhishimap:值使(八门) agzmap:暗干支 starQYmap:奇仪配九星 bsmap:八神 sqly:六仪三奇
+	//starmap:值符(九星) zhishimap:值使(八门) agzmap:暗干支 starQYmap:天盘奇仪 bsmap:八神 sqly:地盘奇仪
 	var arr1, arr2, arr3, arr4, arr5, arr6, arr7, arr8, arr9 []string
 	arr1 = append(arr1, starmap[1], zhishimap[1], agzmap[1], starQYmap[1], bsmap[1], sqly[1]) //一宫信息
 	arr2 = append(arr2, starmap[2], zhishimap[2], agzmap[2], starQYmap[2], bsmap[2], sqly[2])

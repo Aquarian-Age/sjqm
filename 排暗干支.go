@@ -7,7 +7,7 @@ import (
 //值符原始宫位
 func FindZFNumber(zf string) (zfn int) {
 	for _, g := range JGMap() {
-		if strings.EqualFold(g.ZF, zf) {
+		if strings.EqualFold(g.Star, zf) {
 			//fmt.Printf("-->值符:%s原始宫位:%d\n", zf, g.Number)
 			zfn = g.Number
 			break

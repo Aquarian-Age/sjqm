@@ -50,3 +50,67 @@ func (g *G) G门破() string {
 
 	return ""
 }
+
+//天遁
+//开休生三门 天盘丙奇下临地盘丁奇者是
+func (g *G) G天遁() {
+	jm := "开休生"
+	bing := "丙" //天盘丙奇
+	ding := "丁" //地盘丁奇
+
+	m1 := g.G1[1]
+	bing1 := g.G1[3]
+	ding1 := g.G1[5]
+	if strings.ContainsAny(jm, m1) && strings.EqualFold(bing, bing1) && strings.EqualFold(ding, ding1) {
+		fmt.Printf("%s门 天盘%s奇 地盘:%s奇 天遁\n", m1, bing1, ding1)
+	}
+
+	m8 := g.G1[1]
+	bing8 := g.G1[3]
+	ding8 := g.G1[5]
+	if strings.ContainsAny(jm, m8) && strings.EqualFold(bing, bing8) && strings.EqualFold(ding, ding8) {
+		fmt.Printf("%s门 天盘%s奇 地盘:%s奇 天遁\n", m8, bing8, ding8)
+	}
+
+	m3 := g.G3[1]
+	bing3 := g.G3[3]
+	ding3 := g.G3[5]
+	if strings.ContainsAny(jm, m3) && strings.EqualFold(bing, bing3) && strings.EqualFold(ding, ding3) {
+		fmt.Printf("%s门 天盘%s奇 地盘:%s奇 天遁\n", m3, bing3, ding3)
+	}
+
+	m4 := g.G1[1]
+	bing4 := g.G1[3]
+	ding4 := g.G1[5]
+	if strings.ContainsAny(jm, m4) && strings.EqualFold(bing, bing4) && strings.EqualFold(ding, ding4) {
+		fmt.Printf("%s门 天盘%s奇 地盘:%s奇 天遁\n", m4, bing4, ding4)
+	}
+
+	m9 := g.G1[1]
+	bing9 := g.G1[3]
+	ding9 := g.G1[5]
+	if strings.ContainsAny(jm, m9) && strings.EqualFold(bing, bing9) && strings.EqualFold(ding, ding9) {
+		fmt.Printf("%s门 天盘%s奇 地盘:%s奇 天遁\n", m9, bing9, ding9)
+	}
+
+	m2 := g.G2[1]
+	bing2 := g.G2[3]
+	ding2 := g.G2[5]
+	if strings.ContainsAny(jm, m2) && strings.EqualFold(bing, bing2) && strings.EqualFold(ding, ding2) {
+		fmt.Printf("%s门 天盘%s奇 地盘:%s奇 天遁\n", m2, bing2, ding2)
+	}
+
+	m7 := g.G1[1]
+	bing7 := g.G1[3]
+	ding7 := g.G1[5]
+	if strings.ContainsAny(jm, m7) && strings.EqualFold(bing, bing7) && strings.EqualFold(ding, ding7) {
+		fmt.Printf("%s门 天盘%s奇 地盘:%s奇 天遁\n", m7, bing7, ding7)
+	}
+
+	m6 := g.G1[1]
+	bing6 := g.G1[3]
+	ding6 := g.G1[5]
+	if strings.ContainsAny(jm, m6) && strings.EqualFold(bing, bing6) && strings.EqualFold(ding, ding6) {
+		fmt.Printf("%s门 天盘%s奇 地盘:%s奇 天遁\n", m6, bing6, ding6)
+	}
+}

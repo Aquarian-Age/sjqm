@@ -9,11 +9,9 @@ var jz60 = ganzhi.MakeJZ60()
 type JG struct {
 	Name   string //八卦名
 	Number int    //九宫数字 戴九履一 二四为肩 六八为足 左三右七
-	ZF     string //值符九星
-	ZS     string //值使八门
+	Star   string //值符九星
+	Door   string //值使八门
 	WX     string //五行属性
-	//QY     string //三奇六仪 排地盘局之后的三奇六仪
-	//Agz    string //暗干支
 }
 
 //九宫排盘结果信息
@@ -26,15 +24,15 @@ type G struct {
 	ZHIFU   string //值符
 	ZHISHI  string //值使
 
-	G1 []string //一宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
-	G2 []string //二宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
-	G3 []string //三宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
-	G4 []string //四宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
-	G5 []string //五宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
-	G6 []string //六宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
-	G7 []string //七宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
-	G8 []string //八宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
-	G9 []string //九宫 九星 八门 暗干支 六甲旬遁 八神 六仪三奇
+	G1 []string //一宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G2 []string //二宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G3 []string //三宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G4 []string //四宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G5 []string //五宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G6 []string //六宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G7 []string //七宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G8 []string //八宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G9 []string //九宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
 }
 
 //一宫

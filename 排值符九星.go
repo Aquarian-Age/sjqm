@@ -161,8 +161,8 @@ func SelfZF(dun string, sqly map[int]string) (zf string, dunN int) {
 			//根据三奇六仪旬遁宫位数找本宫位原始值符值使
 			for number, g := range JGMap() {
 				if n == number {
-					zf = g.ZF //原始宫位值符
-					dunN = n  //旬遁落宫数字
+					zf = g.Star //原始宫位值符
+					dunN = n    //旬遁落宫数字
 					break
 				}
 			}
@@ -227,17 +227,14 @@ func ZhiFuStar(xunShouNumber int, starArr []string) map[int]string {
 func del(x []int) []int {
 	for i := 0; i < len(x); i++ {
 		if x[i] == 5 && i == 0 { //5在首位
-			//fmt.Printf("-->i=%d x[]i]=%d\n", i, x[i])
 			head := x[i+1:]
 			x = head
-			//fmt.Printf("-->del5:%d\n", x)
 			//找坤二宫数字 再排序
 			for j := 0; j < len(x); j++ {
 				if x[j] == 2 {
 					xx1 := x[:j]
 					xx2 := x[j:]
 					x = append(xx2, xx1...)
-					//fmt.Printf("--del5re:%d\n", x)
 					break
 				}
 			}
