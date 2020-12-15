@@ -6,7 +6,7 @@ import (
 	"liangzi.local/nongli/solar"
 )
 
-func Result(y int, dgz, hgz string, st time.Time) *G {
+func Result(y int, dgz, hgz string, st time.Time) (*G, *GMap) {
 	jqt := solar.JQT(y)
 	jq := solar.NewJQ(jqt)
 	jqnames := jq.Name //节气名称数组
@@ -67,7 +67,7 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 	zhis := FindZS(zfn)
 	//fmt.Printf("值使:%s\n", zhis)
 	zhishimap := ZhiShi(hgz, agzmap, zhis)
-	//fmt.Printf("值使八门:%v\n", zhishimap)
+	//fmt.Printf("-->值使八门:%v\n", zhishimap)
 
 	//八神
 	bsmap := BaShen(xunShouNumber, yinyangN)
@@ -105,5 +105,9 @@ func Result(y int, dgz, hgz string, st time.Time) *G {
 		G8:      arr8,
 		G9:      arr9,
 	}
-	return g
+
+	gmap := new(GMap)
+	gmap = &GMap{ZhiShiMap: zhishimap}
+
+	return g, gmap
 }

@@ -345,13 +345,13 @@ func Test门破(t *testing.T) {
 		ZHIFU:   "天心",
 		ZHISHI:  "开门",
 		G1:      []string{"天柱", "x", "己未", "己", "腾蛇", "己"},
-		G2:      []string{"天辅", "杜", "戊午", "戊", "白虎", "戊"},
+		G2:      []string{"天辅", "杜门", "戊午", "戊", "白虎", "戊"},
 		G3:      []string{"天蓬", "x", "丁巳", "乙", "九天", "乙"},
 		G4:      []string{"天任", "x", "丙辰", "丙", "九地", "丙"},
 		G5:      []string{"天禽", "", "乙卯", "丁", "", "丁"},
-		G6:      []string{"天芮", "景", "甲寅", "癸亥", "癸", "太阴", "癸"},
+		G6:      []string{"天芮", "景门", "甲寅", "癸亥", "癸", "太阴", "癸"},
 		G7:      []string{"天英", "x", "壬戌", "壬", "六合", "壬"},
-		G8:      []string{"天心", "开", "辛酉", "辛", "直符", "辛"},
+		G8:      []string{"天心", "开门", "辛酉", "辛", "直符", "辛"},
 		G9:      []string{"天冲", "x", "庚申", "庚", "玄武", "庚"},
 	}
 	want := "门破"
@@ -359,4 +359,49 @@ func Test门破(t *testing.T) {
 	if !strings.HasPrefix(act, want) {
 		t.Errorf(" (g *G) G门破()=%s 期望结果:%s\n", act, want)
 	}
+}
+
+//趋三避五
+func TestGMap_G趋三避五(t *testing.T) {
+	//2020102006f
+	//庚子 丁亥 辛巳 癸巳
+	//节气:小雪 阴遁 上元 5局 旬首:甲申 值符:天冲 值使:伤门
+
+	zhis := "伤门"
+	zsmap := map[int]string{1: "休门", 2: "死门", 3: "伤门", 4: "杜门", 6: "开门", 7: "惊门", 8: "生门", 9: "景门"}
+	gmap := &GMap{ZhiShiMap: zsmap}
+	want := "值使伤门落3宫 宜趋之吉"
+	qbs := gmap.G趋三避五(zhis)
+	if !reflect.DeepEqual(want, qbs) {
+		t.Errorf("func (gmap *GMap) G趋三避五(%s)=%s 期望值:%s\n", zhis, qbs, want)
+	}
+}
+
+//天遁
+func Test天遁(t *testing.T) {
+	g := G{
+		JieQi:   "小雪",
+		YinYang: "阴遁",
+		N:       2,
+		YUAN:    "下元",
+		XS:      "甲寅",
+		ZHIFU:   "天心",
+		ZHISHI:  "开门",
+		G1:      []string{"天柱", "开门", "己未", "丙", "腾蛇", "丁"},
+		G2:      []string{"天辅", "杜门", "戊午", "戊", "白虎", "戊"},
+		G3:      []string{"天蓬", "x", "丁巳", "乙", "九天", "乙"},
+		G4:      []string{"天任", "x", "丙辰", "丙", "九地", "丙"},
+		G5:      []string{"天禽", "", "乙卯", "丁", "", "丁"},
+		G6:      []string{"天芮", "景门", "甲寅", "癸亥", "癸", "太阴", "癸"},
+		G7:      []string{"天英", "x", "壬戌", "壬", "六合", "壬"},
+		G8:      []string{"天心", "x", "辛酉", "辛", "直符", "辛"},
+		G9:      []string{"天冲", "x", "庚申", "庚", "玄武", "庚"},
+	}
+
+	td := g.G天遁()
+	want := "天遁"
+	if !strings.EqualFold(td, want) {
+		t.Errorf("g.G天遁()=%s 期望值:%s\n", td, want)
+	}
+
 }

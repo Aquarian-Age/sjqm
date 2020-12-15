@@ -12,6 +12,7 @@ type JG struct {
 	Star   string //值符九星
 	Door   string //值使八门
 	WX     string //五行属性
+	ZiBai  string //紫白
 }
 
 //九宫排盘结果信息
@@ -33,6 +34,11 @@ type G struct {
 	G7 []string //七宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
 	G8 []string //八宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
 	G9 []string //九宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+}
+
+//九宫排怕结果的map信息
+type GMap struct {
+	ZhiShiMap map[int]string //排盘结果的值使八门信息
 }
 
 //一宫
