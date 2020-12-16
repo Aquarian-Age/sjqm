@@ -36,9 +36,18 @@ type G struct {
 	G9 []string //九宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
 }
 
-//九宫排怕结果的map信息
+//九宫排盘结果信息(map)
 type GMap struct {
 	ZhiShiMap map[int]string //排盘结果的值使八门信息
+}
+
+//qm包结果信息(map)
+type QM struct {
+	DiSiHuMap     map[string]string //地四户
+	DiSiMenMap    map[string]string //地私门
+	TianMaS       string            //太冲天马
+	TianSanMenMap map[string]string //天三门
+	WuFuMap       map[string]string //五符
 }
 
 //一宫
