@@ -19,21 +19,22 @@ type JG struct {
 type G struct {
 	JieQi   string //节气
 	YinYang string //阴阳遁
-	N       int    //定宫数字
+	N       int    //定局数字
 	YUAN    string //元
 	XS      string //旬首
 	ZHIFU   string //值符
 	ZHISHI  string //值使
 
-	G1 []string //一宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G2 []string //二宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G3 []string //三宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G4 []string //四宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G5 []string //五宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G6 []string //六宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G7 []string //七宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G8 []string //八宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G9 []string //九宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G1   []string //一宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G2   []string //二宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G3   []string //三宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G4   []string //四宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G5   []string //五宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G6   []string //六宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G7   []string //七宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G8   []string //八宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G9   []string //九宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	JXXW *JXXW
 }
 
 //九宫排盘结果信息(map)
@@ -48,6 +49,17 @@ type QM struct {
 	TianMaS       string            //太冲天马
 	TianSanMenMap map[string]string //天三门
 	WuFuMap       map[string]string //五符
+}
+
+//九星休旺
+//旺:我生之月 相:月类之月 死:生我之月 囚:克我之月 休:我克之月
+type JXXW struct {
+	StarName string   //九星名称
+	Wang     []string //旺
+	Xiang    []string //相
+	Si       []string //死
+	Qiu      []string //囚
+	Xiu      []string //休
 }
 
 //一宫

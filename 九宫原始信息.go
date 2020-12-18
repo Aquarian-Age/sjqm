@@ -1,5 +1,10 @@
 package sjqm
 
+import (
+	"liangzi.local/nongli/ganzhi"
+	"strings"
+)
+
 //九宫原始信息 少了中宫....
 func JGMap() map[int]JG {
 	var jginfo = make(map[int]JG)
@@ -18,4 +23,51 @@ func JGMap() map[int]JG {
 		5: {Name: "中", Number: 5, Star: "天禽", Door: "死门", WX: "土", ZiBai: "五黄"}, //中宫
 	}
 	return jginfo
+}
+
+//九星休旺
+//旺:我生之月 相:月类之月 死:生我之月 囚:克我之月 休:我克之月
+func NewJXXW(starName string) *JXXW {
+	zhi := []string{"寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥", "子", "丑"}
+	jxxw := new(JXXW)
+	for _, g := range JGMap() {
+		if strings.EqualFold(g.Star, starName) {
+			wx1 := g.WX
+			wang, xiang, si, qiu, xiu := wxsqx(zhi, wx1)
+			//fmt.Printf("-->%s-%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g.Star, g.WX, wang, xiang, si, qiu, xiu)
+			jxxw = &JXXW{
+				StarName: g.Star,
+				Wang:     wang,
+				Xiang:    xiang,
+				Si:       si,
+				Qiu:      qiu,
+				Xiu:      xiu,
+			}
+			break
+		}
+	}
+	return jxxw
+}
+
+func wxsqx(zhi []string, wx1 string) (wang, xiang, si, qiu, xiu []string) {
+	for i := 0; i < len(zhi); i++ {
+		zs := ganzhi.NewZHI(zhi[i])
+		if strings.EqualFold(zhi[i], zs.Name) {
+			wx2 := zs.WuXing //五行属性
+			n := ganzhi.Wxsk(wx1, wx2)
+			switch n {
+			case 1: //我生 wx1生wx2
+				wang = append(wang, zhi[i])
+			case 0: //类 wx1比和wx2
+				xiang = append(xiang, zhi[i])
+			case 2: //生我 wx2生wx1
+				si = append(si, zhi[i])
+			case -2: //克我 wx2克wx1
+				qiu = append(qiu, zhi[i])
+			case -1: //我克 wx1克wx2
+				xiu = append(xiu, zhi[i])
+			}
+		}
+	}
+	return
 }

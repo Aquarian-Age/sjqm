@@ -51,6 +51,23 @@ func main() {
 
 	fmt.Println("--------------------------")
 	///方法
+	g1XW := g.G1休旺() //落一宫星休旺信息
+	g8XW := g.G8休旺()
+	g3XW := g.G3休旺()
+	g4XW := g.G4休旺()
+	g9XW := g.G9休旺()
+	g2XW := g.G2休旺()
+	g7XW := g.G7休旺()
+	g6XW := g.G6休旺()
+	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g1XW.StarName, g1XW.Wang, g1XW.Xiang, g1XW.Si, g1XW.Qiu, g1XW.Xiu)
+	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g8XW.StarName, g8XW.Wang, g8XW.Xiang, g8XW.Si, g8XW.Qiu, g8XW.Xiu)
+	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g3XW.StarName, g3XW.Wang, g3XW.Xiang, g3XW.Si, g3XW.Qiu, g3XW.Xiu)
+	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g4XW.StarName, g4XW.Wang, g4XW.Xiang, g4XW.Si, g4XW.Qiu, g4XW.Xiu)
+	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g9XW.StarName, g9XW.Wang, g9XW.Xiang, g9XW.Si, g9XW.Qiu, g9XW.Xiu)
+	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g2XW.StarName, g2XW.Wang, g2XW.Xiang, g2XW.Si, g2XW.Qiu, g2XW.Xiu)
+	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g7XW.StarName, g7XW.Wang, g7XW.Xiang, g7XW.Si, g7XW.Qiu, g7XW.Xiu)
+	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g6XW.StarName, g6XW.Wang, g6XW.Xiang, g6XW.Si, g6XW.Qiu, g6XW.Xiu)
+
 	g.G门破()
 	g.G天遁()
 	//孤虚

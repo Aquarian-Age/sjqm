@@ -405,3 +405,23 @@ func Test天遁(t *testing.T) {
 	}
 
 }
+
+func TestG九星休旺(t *testing.T) {
+	starName := "天芮"
+	want := struct {
+		name                      string
+		wang, xiang, si, qiu, xiu []string
+	}{
+		name:  starName,
+		wang:  []string{"申", "酉"},
+		xiang: []string{"辰", "未", "戌", "丑"},
+		si:    []string{"巳", "午"},
+		qiu:   []string{"寅", "卯"},
+		xiu:   []string{"亥", "子"},
+	}
+	jxxw := NewJXXW(starName)
+	jxs := *jxxw
+	if !reflect.DeepEqual(jxs.Wang, want.wang) && !reflect.DeepEqual(jxs.StarName, want.name) {
+		t.Errorf("func NewJXXW(%s)=%v 期望值:%v\n", starName, jxs, want)
+	}
+}
