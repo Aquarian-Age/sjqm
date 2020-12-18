@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	ts "liangzi.local/ts/tongshu"
 	"log"
+
+	ts "liangzi.local/ts/tongshu"
 
 	"liangzi.local/nongli/ccal"
 	"liangzi.local/sjqm"
@@ -85,7 +86,7 @@ func main() {
 	//	天门地户
 	jqt := ts.JQT(l.LYear)
 	solarT := s.SolarDayT
-	yj := ts.NEWZRYLYueJiang(solarT, jqt)
+	yj := ts.NewYueJiang(solarT, jqt)
 
 	qmStruct := sjqm.NewQM(yj.Zhi, dgz, hgz)
 	//fmt.Println(qmStruct)

@@ -25,15 +25,15 @@ type G struct {
 	ZHIFU   string //值符
 	ZHISHI  string //值使
 
-	G1   []string //一宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G2   []string //二宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G3   []string //三宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G4   []string //四宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G5   []string //五宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G6   []string //六宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G7   []string //七宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G8   []string //八宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
-	G9   []string //九宫 九星 八门 暗干支 奇仪配九星 八神 六仪三奇
+	G1   []string //一宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G2   []string //二宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G3   []string //三宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G4   []string //四宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G5   []string //五宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G6   []string //六宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G7   []string //七宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G8   []string //八宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G9   []string //九宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
 	JXXW *JXXW
 }
 
@@ -60,95 +60,4 @@ type JXXW struct {
 	Si       []string //死
 	Qiu      []string //囚
 	Xiu      []string //休
-}
-
-//一宫
-type G1 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪三奇 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
-
-}
-
-//二宫
-type G2 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
-}
-
-//三宫
-type G3 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
-}
-
-//四宫
-type G4 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
-}
-
-//五宫
-type G5 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
-}
-
-//六宫
-type G6 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
-}
-
-//七宫
-type G7 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
-}
-
-//八宫
-type G8 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
-}
-
-//九宫
-type G9 struct {
-	Number     int    //原始宫位数字 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫 九宫 二四为肩(左4右2)；六八为足(左8右6) 戴九履一(492 816) 左三右七 五中宫
-	Dun        string //六甲旬遁(排三奇六仪的旬遁)
-	LiuJia     string //六甲即是暗干支
-	LiuYiSanQi string //六仪 阳顺阴逆
-	ZhiFu      string //值符即是九星 值符随时辰天干
-	ZhiShi     string //值使即是八门 值使随时辰地支
 }

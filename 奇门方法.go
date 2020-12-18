@@ -5,51 +5,51 @@ import (
 	"strings"
 )
 
-//九星休旺
+//九星休旺之月
 func (g *G) G1休旺() *JXXW {
-	s1 := g.G1[0] //落一宫的九星
+	s1 := g.G1[0] //落宫星名
 	return NewJXXW(s1)
 }
 
-//九星休旺
+//九星休旺之月
 func (g *G) G8休旺() *JXXW {
-	s8 := g.G8[0] //落一宫的九星
+	s8 := g.G8[0] //落宫星名
 	return NewJXXW(s8)
 }
 
-//九星休旺
+//九星休旺之月
 func (g *G) G3休旺() *JXXW {
-	s3 := g.G3[0] //落一宫的九星
+	s3 := g.G3[0] //落宫星名
 	return NewJXXW(s3)
 }
 
-//九星休旺
+//九星休旺之月
 func (g *G) G4休旺() *JXXW {
-	s4 := g.G4[0] //落一宫的九星
+	s4 := g.G4[0] //落宫星名
 	return NewJXXW(s4)
 }
 
-//九星休旺
+//九星休旺之月
 func (g *G) G9休旺() *JXXW {
-	s9 := g.G9[0] //落一宫的九星
+	s9 := g.G9[0] //落宫星名
 	return NewJXXW(s9)
 }
 
-//九星休旺
+//九星休旺之月
 func (g *G) G2休旺() *JXXW {
-	s2 := g.G2[0] //落一宫的九星
+	s2 := g.G2[0] //落宫星名
 	return NewJXXW(s2)
 }
 
-//九星休旺
+//九星休旺之月
 func (g *G) G7休旺() *JXXW {
-	s7 := g.G7[0] //落一宫的九星
+	s7 := g.G7[0] //落宫星名
 	return NewJXXW(s7)
 }
 
-//九星休旺
+//九星休旺之月
 func (g *G) G6休旺() *JXXW {
-	s6 := g.G6[0] //落一宫的九星
+	s6 := g.G6[0] //落宫星名
 	return NewJXXW(s6)
 }
 
@@ -74,7 +74,7 @@ func (g *G) G门破() string {
 		fmt.Printf("%s临%d宫 门破\n", m9, 9)
 		return "门破 吉事不成 凶灾更凶"
 	}
-	//生门临一宫 门破 (土克水)
+	//生门临宫 门破 (土克水)
 	if strings.EqualFold("生门", m1) || strings.EqualFold("死门", m1) {
 		fmt.Printf("%s临%d宫 门破\n", m1, 1)
 		return "门破 吉事不成 凶灾更凶"
