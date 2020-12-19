@@ -8,9 +8,7 @@ import (
 //如得本日贵人到乾亥，就是贵人登天门
 func TianSanMen(yj, hgz string) map[string]string {
 	ssmap := shenShaMap()
-	//fmt.Printf("-->神煞map:%v\n", ssmap)
 	yjzhi := yjh(yj, hgz)
-	//fmt.Printf("-->月将map:%v\n", yjzhi)
 
 	var smmap = make(map[string]string)
 	for z, name := range ssmap {
@@ -20,7 +18,7 @@ func TianSanMen(yj, hgz string) map[string]string {
 			}
 		}
 	}
-	//fmt.Printf("-->三门:%v\n", smmap)
+
 	return smmap
 }
 
