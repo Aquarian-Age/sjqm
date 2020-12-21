@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"time"
 
 	ts "liangzi.local/ts/tongshu"
 
@@ -24,7 +25,7 @@ func main() {
 	mgz := gz.MonthGanZhiM
 	dgz := fmt.Sprintf("%s%s", gz.DayGanM, gz.DayZhiM)
 	hgz := gz.HourGanZhiM
-	st := s.SolarDayT
+	st := time.Date(s.SYear, time.Month(s.SMonth), s.SDay, s.SHour, 0, 0, 0, time.Local)
 	g, gmap := sjqm.Result(y, dgz, hgz, st)
 	fmt.Println(ygz, mgz, dgz, hgz)
 
