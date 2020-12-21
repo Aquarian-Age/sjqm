@@ -4,6 +4,7 @@ import (
 	"reflect"
 	"strings"
 	"testing"
+	"time"
 )
 
 var (
@@ -22,6 +23,53 @@ var (
 
 	xsArr = []string{"甲子", "甲戌", "甲申", "甲午", "甲辰", "甲寅"} //旬首数组
 )
+
+func TestFindJQ(t *testing.T) {
+	st := time.Date(2020, time.Month(12), 21, 19, 0, 0, 0, time.Local)
+	jqnames := []string{"冬至", "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏",
+		"小满", "芒种", "夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬",
+		"小雪", "大雪", "冬至", "小寒", "大寒", "立春"}
+	jqt := []time.Time{
+		time.Date(2019, time.Month(12), 22, 12, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(1), 06, 05, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(1), 20, 22, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(2), 04, 17, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(2), 19, 12, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(3), 05, 10, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(3), 20, 11, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(4), 04, 15, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(4), 19, 22, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(5), 05, 8, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(5), 20, 21, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(6), 05, 12, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(6), 21, 05, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(7), 06, 23, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(7), 22, 16, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(8), 7, 9, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(8), 22, 23, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(9), 07, 12, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(9), 22, 21, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(10), 8, 03, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(10), 23, 07, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(11), 07, 07, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(11), 22, 04, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(12), 07, 00, 0, 0, 0, time.Local),
+		time.Date(2020, time.Month(12), 21, 18, 0, 0, 0, time.Local),
+		time.Date(2021, time.Month(01), 05, 11, 0, 0, 0, time.Local),
+		time.Date(2021, time.Month(01), 20, 04, 0, 0, 0, time.Local),
+		time.Date(2021, time.Month(02), 03, 22, 0, 0, 0, time.Local),
+	}
+	windex := 24
+	wjmc := "冬至"
+
+	index, jmc := FindJQ(st, jqt, jqnames)
+	if index != windex {
+		t.Errorf("FindJQ(%v,%v,%v)=%d 期望值 %d\n", st, jqt, jqnames, index, windex)
+	}
+	if !strings.EqualFold(jmc, wjmc) {
+		t.Errorf("FindJQ(%v,%v,%v)=%s 期望值 %s\n", st, jqt, jqnames, jmc, wjmc)
+	}
+}
 
 //定元 测试
 func Test定元(t *testing.T) {
@@ -423,5 +471,24 @@ func TestG九星休旺(t *testing.T) {
 	jxs := *jxxw
 	if !reflect.DeepEqual(jxs.Wang, want.wang) && !reflect.DeepEqual(jxs.StarName, want.name) {
 		t.Errorf("func NewJXXW(%s)=%v 期望值:%v\n", starName, jxs, want)
+	}
+}
+
+func TestJX(t *testing.T) {
+	ig := &G{
+		G1: []string{"天柱", "开门", "己未", "丙", "腾蛇", "丁"},
+		G2: []string{"天辅", "杜门", "戊午", "戊", "白虎", "戊"},
+		G3: []string{"天蓬", "x", "丁巳", "乙", "九天", "乙"},
+		G4: []string{"天任", "x", "丙辰", "丙", "九地", "丙"},
+		G5: []string{"天禽", "", "乙卯", "丁", "", "丁"},
+		G6: []string{"天芮", "景门", "甲寅", "癸亥", "癸", "太阴", "癸"},
+		G7: []string{"天英", "x", "壬戌", "壬", "六合", "壬"},
+		G8: []string{"天心", "x", "辛酉", "辛", "直符", "辛"},
+		G9: []string{"天冲", "x", "庚申", "庚", "玄武", "庚"},
+	}
+	jxarr := ig.九星()
+	want := []string{"天柱", "天心", "天蓬", "天任", "天冲", "天辅", "天英", "天芮", "天禽"}
+	if !reflect.DeepEqual(want, jxarr) {
+		t.Errorf("(g *G)九星()=%s 期望值:%s\n", jxarr, want)
 	}
 }
