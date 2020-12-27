@@ -15,6 +15,7 @@ func FindJQ(st time.Time, jqt []time.Time, jqnames []string) (index int, jmc str
 		begint = time.Date(begint.Year(), begint.Month(), begint.Day(), begint.Hour(), 0, 0, 0, time.Local)
 		endt = jqt[i+1]
 		endt = time.Date(endt.Year(), endt.Month(), endt.Day(), endt.Hour(), 0, 0, 0, time.Local)
+
 		if (st.After(begint) || st.Equal(begint)) && st.Before(endt) { //当前时间前的一个节气
 			index = i        //节气索引
 			jmc = jqnames[i] //当前时间所属的节气名称

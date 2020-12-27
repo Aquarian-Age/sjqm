@@ -9,14 +9,16 @@ import (
 func Result(y int, dgz, hgz string, st time.Time) (*G, *GMap) {
 	jqt := solar.JQT(y)
 	jq := solar.NewJQ(jqt)
+	//fmt.Printf("%v\n", jq)
 	jqnames := jq.Name //节气名称数组
 	jqarr := jq.Time
+
 	_, dzt := jq.Q冬至()
 	_, xzt := jq.Q夏至()
 	st = time.Date(st.Year(), st.Month(), st.Day(), st.Hour(), 0, 0, 0, time.Local)
 	//定节气
 	index, jmc := FindJQ(st, jqarr, jqnames)
-	//fmt.Println(jmc)
+	//fmt.Printf("index:%d jmc:%s\n", index, jmc)
 	//定阴阳遁
 	yinyangN := YinYang(st, dzt, xzt)
 	var yy string

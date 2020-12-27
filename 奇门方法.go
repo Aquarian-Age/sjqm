@@ -5,52 +5,20 @@ import (
 	"strings"
 )
 
-//九星休旺之月
-func (g *G) G1休旺() *JXXW {
-	s1 := g.G1[0] //落宫星名
-	return NewJXXW(s1)
-}
-
-//九星休旺之月
-func (g *G) G8休旺() *JXXW {
-	s8 := g.G8[0] //落宫星名
-	return NewJXXW(s8)
-}
-
-//九星休旺之月
-func (g *G) G3休旺() *JXXW {
-	s3 := g.G3[0] //落宫星名
-	return NewJXXW(s3)
-}
-
-//九星休旺之月
-func (g *G) G4休旺() *JXXW {
-	s4 := g.G4[0] //落宫星名
-	return NewJXXW(s4)
-}
-
-//九星休旺之月
-func (g *G) G9休旺() *JXXW {
-	s9 := g.G9[0] //落宫星名
-	return NewJXXW(s9)
-}
-
-//九星休旺之月
-func (g *G) G2休旺() *JXXW {
-	s2 := g.G2[0] //落宫星名
-	return NewJXXW(s2)
-}
-
-//九星休旺之月
-func (g *G) G7休旺() *JXXW {
-	s7 := g.G7[0] //落宫星名
-	return NewJXXW(s7)
-}
-
-//九星休旺之月
-func (g *G) G6休旺() *JXXW {
-	s6 := g.G6[0] //落宫星名
-	return NewJXXW(s6)
+//九星数组 1 8 3 4 9 2 7 6 5
+func (g *G) 九星() []string {
+	n1 := g.G1[0]
+	n8 := g.G8[0]
+	n3 := g.G3[0]
+	n4 := g.G4[0]
+	n9 := g.G9[0]
+	n2 := g.G2[0]
+	n7 := g.G7[0]
+	n6 := g.G6[0]
+	n5 := g.G5[0]
+	var jxarr []string
+	jxarr = append(jxarr, n1, n8, n3, n4, n9, n2, n7, n6, n5)
+	return jxarr
 }
 
 //门破

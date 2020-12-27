@@ -16,7 +16,6 @@ func YinYang(st, dzt, xzt time.Time) (yy int) {
 	if st.After(xzt) || st.Equal(xzt) {
 		yy = 0 //阴
 	} else if st.Before(xzt) {
-		//fmt.Printf("节气时间在上一年冬至后本年立春前:\n")
 		yy = 1
 	}
 	if st.After(dzt) || st.Equal(dzt) {
