@@ -1,6 +1,7 @@
 package sjqm
 
 import (
+	"fmt"
 	"reflect"
 	"strings"
 	"testing"
@@ -474,21 +475,24 @@ func TestG九星休旺(t *testing.T) {
 	}
 }
 
+//九星吉凶
 func TestJX(t *testing.T) {
-	ig := &G{
-		G1: []string{"天柱", "开门", "己未", "丙", "腾蛇", "丁"},
-		G2: []string{"天辅", "杜门", "戊午", "戊", "白虎", "戊"},
-		G3: []string{"天蓬", "x", "丁巳", "乙", "九天", "乙"},
-		G4: []string{"天任", "x", "丙辰", "丙", "九地", "丙"},
-		G5: []string{"天禽", "", "乙卯", "丁", "", "丁"},
-		G6: []string{"天芮", "景门", "甲寅", "癸亥", "癸", "太阴", "癸"},
-		G7: []string{"天英", "x", "壬戌", "壬", "六合", "壬"},
-		G8: []string{"天心", "x", "辛酉", "辛", "直符", "辛"},
-		G9: []string{"天冲", "x", "庚申", "庚", "玄武", "庚"},
-	}
-	jxarr := ig.九星()
-	want := []string{"天柱", "天心", "天蓬", "天任", "天冲", "天辅", "天英", "天芮", "天禽"}
-	if !reflect.DeepEqual(want, jxarr) {
-		t.Errorf("(g *G)九星()=%s 期望值:%s\n", jxarr, want)
-	}
+	/*	ig := &G{
+			G1: []string{"天柱", "开门", "己未", "丙", "腾蛇", "丁"},
+			G2: []string{"天辅", "杜门", "戊午", "戊", "白虎", "戊"},
+			G3: []string{"天蓬", "x", "丁巳", "乙", "九天", "乙"},
+			G4: []string{"天任", "x", "丙辰", "丙", "九地", "丙"},
+			G5: []string{"天禽", "", "乙卯", "丁", "", "丁"},
+			G6: []string{"天芮", "景门", "甲寅", "癸亥", "癸", "太阴", "癸"},
+			G7: []string{"天英", "x", "壬戌", "壬", "六合", "壬"},
+			G8: []string{"天心", "x", "辛酉", "辛", "直符", "辛"},
+			G9: []string{"天冲", "x", "庚申", "庚", "玄武", "庚"},
+		}
+		jxarr := ig.九星()
+		want := []string{"天柱", "天心", "天蓬", "天任", "天冲", "天辅", "天英", "天芮", "天禽"}
+		if !reflect.DeepEqual(want, jxarr) {
+			t.Errorf("(g *G)九星()=%s 期望值:%s\n", jxarr, want)
+		}*/
+	tp := NewTianPeng("天蓬")
+	fmt.Println(tp.Name, tp.Info)
 }
