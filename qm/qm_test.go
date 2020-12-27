@@ -104,3 +104,42 @@ func TestWuFu(t *testing.T) {
 		t.Errorf("func WuFu(%s)=%v 期望值:%v\n", dgz, wfmap, want)
 	}
 }
+
+//年紫白
+func TestZiBaiY(t *testing.T) {
+	zbn := []struct {
+		ygz string
+		n   int
+	}{{ygz: "辛卯", n: 1}, {ygz: "壬申", n: 0}, {ygz: "癸亥", n: -1}}
+	w := []int{1, 5, 2}
+
+	for i := 0; i < len(zbn); i++ {
+		x := ZiBaiY(zbn[i].n, zbn[i].ygz)
+		if x != w[i] {
+			t.Errorf("func ZiBaiY(%d %s)=%d 期望值:%d\n", zbn[i].n, zbn[i].ygz, x, w[i])
+		}
+	}
+}
+
+//月紫白
+func TestZiBaiM(t *testing.T) {
+	ygz := "庚子"
+	mgz := "戊子"
+	want := 7
+	mx := ZiBaiM(ygz, mgz)
+	if want != mx {
+		t.Errorf("func ZiBaiM(%s %s)=%d want:%d\n", ygz, mgz, mx, want)
+	}
+	////
+	zbm := []struct {
+		ygz, mgz string
+	}{{ygz: "庚子", mgz: "丁亥"}, {ygz: "辛丑", mgz: "己亥"}, {ygz: "壬寅", mgz: "辛亥"}}
+	w := []int{8, 5, 2}
+
+	for i := 0; i < len(zbm); i++ {
+		mx := ZiBaiM(zbm[i].ygz, zbm[i].mgz)
+		if w[i] != mx {
+			t.Errorf("func ZiBaiM(%s %s)=%d want:%d\n", zbm[i].ygz, zbm[i].mgz, mx, w[i])
+		}
+	}
+}
