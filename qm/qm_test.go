@@ -133,8 +133,8 @@ func TestZiBaiM(t *testing.T) {
 	////
 	zbm := []struct {
 		ygz, mgz string
-	}{{ygz: "庚子", mgz: "丁亥"}, {ygz: "辛丑", mgz: "己亥"}, {ygz: "壬寅", mgz: "辛亥"}}
-	w := []int{8, 5, 2}
+	}{{ygz: "庚子", mgz: "丁亥"}, {ygz: "辛丑", mgz: "己亥"}, {ygz: "壬寅", mgz: "辛亥"}, {ygz: "壬寅", mgz: "癸丑"}}
+	w := []int{8, 5, 2, 9}
 
 	for i := 0; i < len(zbm); i++ {
 		mx := ZiBaiM(zbm[i].ygz, zbm[i].mgz)
