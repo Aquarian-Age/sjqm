@@ -435,3 +435,13 @@ func TestZiBaiH(t *testing.T) {
 
 	}
 }
+
+//紫白五行属性
+func TestZiBaiSelf(t *testing.T) {
+	//zbs := []string{"坎水", "坤土", "震木", "巽木", "中土", "乾金", "兑金", "艮土", "离火"}
+	zbn := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	for i := 0; i < len(zbn); i++ {
+		ZiBaiSelf(zbn[i])
+	}
+
+}

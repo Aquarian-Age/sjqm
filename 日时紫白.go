@@ -4,6 +4,7 @@ import (
 	"liangzi.local/nongli/ganzhi"
 	"liangzi.local/nongli/solar"
 	"liangzi.local/sjqm/qm"
+	"strings"
 	"time"
 )
 
@@ -105,4 +106,26 @@ func findT(st time.Time, sy int) (time.Time, time.Time) {
 	st = time.Date(st.Year(), st.Month(), st.Day(), 0, 0, 0, 0, time.Local)
 
 	return dzt, xzt
+}
+
+/*#########紫白克应(生旺退煞死)#########*/
+
+//紫白五行属性
+func ZiBaiSelf(zbn int) (zbwx string) {
+	//k:紫白 v:五行属性
+	//	"一白": "坎水", "二黑": "坤土", "三碧": "震木", "四绿": "巽木", "五黄": "中土",
+	//	"六白": "乾金", "七赤": "兑金", "八白": "艮土", "九紫": "离火",
+	wx := []string{"木", "火", "土", "金", "水"}
+	zbmap := map[int]string{1: "坎水", 2: "坤土", 3: "震木", 4: "巽木", 5: "中土", 6: "乾金", 7: "兑金", 8: "艮土", 9: "离火"}
+	for k, v := range zbmap {
+		if k == zbn {
+			for j := 0; j < len(wx); j++ {
+				if strings.ContainsAny(wx[j], v) {
+					zbwx = wx[j]
+				}
+			}
+			break
+		}
+	}
+	return
 }
