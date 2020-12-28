@@ -1,6 +1,8 @@
 package sjqm
 
 import (
+	"fmt"
+	"strings"
 	"testing"
 	"time"
 )
@@ -436,12 +438,37 @@ func TestZiBaiH(t *testing.T) {
 	}
 }
 
+//紫白飞宫
+func TestZiBaiG(t *testing.T) {
+	zbg := struct {
+		zbn, yy int
+	}{zbn: 3, yy: 1}
+	zbGmap := ZiBaiGmap(zbg.zbn, zbg.yy)
+	fmt.Printf("%v\n", zbGmap)
+
+}
+
 //紫白五行属性
 func TestZiBaiSelf(t *testing.T) {
-	//zbs := []string{"坎水", "坤土", "震木", "巽木", "中土", "乾金", "兑金", "艮土", "离火"}
 	zbn := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	wxs := []string{"水", "土", "木", "木", "土", "金", "金", "土", "火"}
 	for i := 0; i < len(zbn); i++ {
-		ZiBaiSelf(zbn[i])
+		zbwx := ZiBaiSelf(zbn[i])
+		if !strings.EqualFold(zbwx, wxs[i]) {
+			t.Errorf("func ZiBaiSelf(%d)=%s want:%s\n", zbn[i], zbwx, wxs[i])
+		}
 	}
 
+}
+
+//紫白生旺退煞
+func TestZiBaiShengWang(t *testing.T) {
+	zbn := 3
+	zbGmap := map[int]int{1: 3, 2: 4, 3: 5, 4: 6, 5: 7, 6: 8, 7: 9, 8: 1, 9: 2}
+	want := "煞"
+
+	zbsw := ZiBaiShengWang(zbn, zbGmap)
+	if !strings.EqualFold(want, zbsw) {
+		t.Errorf("ZiBaiShengWang(%d,%v)=%s want:%s\n", zbn, zbGmap, zbsw, want)
+	}
 }
