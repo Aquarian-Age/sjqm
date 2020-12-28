@@ -10,7 +10,7 @@ import (
 
 //日紫白起法
 func ZiBaiD(dgz string, st time.Time, sy int) (dx int) {
-	dzt, xzt := findT(st, sy)
+	dzt, xzt := FindT(st, sy)
 	_, yuanN := YuanN(dgz)            //元 0上元 1中元 2下元
 	yinYangN := YinYang(st, dzt, xzt) //1阳局 0阴局
 	N := findN(dgz)                   //柱数
@@ -43,7 +43,7 @@ func ZiBaiD(dgz string, st time.Time, sy int) (dx int) {
 
 //时辰紫白起法
 func ZiBaiH(dgz, hgz string, st time.Time, sy int) (hx int) {
-	dzt, xzt := findT(st, sy)
+	dzt, xzt := FindT(st, sy)
 	//_, yuanN := YuanN(dgz)            //元 0上元 1中元 2下元
 	yinYangN := YinYang(st, dzt, xzt) //1阳局 0阴局
 
@@ -96,7 +96,7 @@ func findN(gz string) int {
 
 //冬至夏至时间
 //这里时间精确到日
-func findT(st time.Time, sy int) (time.Time, time.Time) {
+func FindT(st time.Time, sy int) (time.Time, time.Time) {
 	jqt := solar.JQT(sy)
 	JQ := solar.NewJQ(jqt)
 	_, dzt := JQ.Q冬至()
@@ -180,12 +180,12 @@ func reArr(arr []int) []int {
 }
 
 /*#########紫白克应(生旺退煞死)#########*/
-func ZiBaiShengWang(zbn int, zbGmap map[int]int) (swts string) {
+func ZiBaiShengWang(zbn int, zbGmap map[int]int) (gn int, swts string) {
 	//zbn:紫白数字 zbGmap:紫白落宫
 
-	gn := findGn(zbn, zbGmap) //gn:紫白落(原始)宫数字
-	zbwx := ZiBaiSelf(zbn)    //紫白五行
-	gwx := findGnSelf(gn)     //紫白落宫五行
+	gn = findGn(zbn, zbGmap) //gn:紫白落(原始)宫数字
+	zbwx := ZiBaiSelf(zbn)   //紫白五行
+	gwx := findGnSelf(gn)    //紫白落宫五行
 
 	//比和n=0 前者生后者n=1 前者克后者n=-1 后者生前者n=2 后者克前者n=-2
 	wxn := ganzhi.Wxsk(zbwx, gwx)
@@ -242,6 +242,18 @@ func ZiBaiSelf(zbn int) (zbwx string) {
 					zbwx = wx[j]
 				}
 			}
+			break
+		}
+	}
+	return
+}
+
+//紫白数字转汉字名称
+func ConvNToS(zbn int) (name string) {
+	zbmap := map[int]string{1: "一白", 2: "二黑", 3: "三碧", 4: "四绿", 5: "五黄", 6: "六白", 7: "七赤", 8: "八白", 9: "九紫"}
+	for k, v := range zbmap {
+		if zbn == k {
+			name = v
 			break
 		}
 	}

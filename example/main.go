@@ -102,6 +102,15 @@ func main() {
 	dsmap := qmStruct.DiSiMenMap //qm.DiSiMen(yj.Zhi, dgz, hgz)
 	fmt.Printf("地私门: 六合:%s 太常:%s 太阴:%s\n", dsmap["六合"], dsmap["太常"], dsmap["太阴"])
 
+	//时辰紫白
+	dzt, xzt := sjqm.FindT(st, y)
+	yy := sjqm.YinYang(st, dzt, xzt)
+	zbn := sjqm.ZiBaiH(dgz, hgz, st, y)
+	zbGmap := sjqm.ZiBaiGmap(zbn, yy)
+	gn, zbsw := sjqm.ZiBaiShengWang(zbn, zbGmap)
+	zbName := sjqm.ConvNToS(zbn)
+	fmt.Printf("%s落%d宫 %s\n", zbName, gn, zbsw)
+
 	///克应
 	var iqm sjqm.IQM
 	iqm = qmStruct
