@@ -1,10 +1,13 @@
 package qm
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 //地四户：除定危开 时支上加月建
 //建除满平一顺流,定执破危相接去,成收开闭掌中周,除定危开为四户,此方有难来逃避
-func DiSiHu(hgz string) map[string]string {
+func DiSiHu(hgz string) string {
 	zhi := []string{"子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"}
 	jc := []string{"建", "除", "满", "平", "定", "执", "破", "危", "成", "收", "开", "闭"}
 	//时辰排序
@@ -39,6 +42,6 @@ func DiSiHu(hgz string) map[string]string {
 			}
 		}
 	}
-	//fmt.Printf("sihumap:%v\n", sihumap) //map[危:子 定:酉 开:卯 除:午]
-	return sihumap
+	dshs := fmt.Sprintf("除在:%s 定在:%s 危在:%s 开在:%s", sihumap["除"], sihumap["定"], sihumap["危"], sihumap["开"])
+	return dshs
 }

@@ -1,16 +1,18 @@
 package qm
 
 import (
+	"fmt"
 	"liangzi.local/nongli/ganzhi"
 	"strings"
 )
 
 //地私门 六合 太阴 太常
-func DiSiMen(yj, dgz, hgz string) (dsMap map[string]string) {
+func DiSiMen(yj, dgz, hgz string) string {
 
 	yang, yin := ganzhi.GuiRenJue(dgz)
-
 	hyy, index := hgzYinYang(hgz)
+
+	var dsMap = make(map[string]string)
 	switch hyy {
 	case 1:
 		//fmt.Printf("时辰定阴阳:%d 阳\n", hyy)
@@ -30,7 +32,8 @@ func DiSiMen(yj, dgz, hgz string) (dsMap map[string]string) {
 		dsMap = ssMap(shenSha, rzhi)
 		//fmt.Printf("地私门map:%v\n", dsMap)
 	}
-	return
+	dsms := fmt.Sprintf("六合:%s 太常:%s 太阴:%s", dsMap["六合"], dsMap["太常"], dsMap["太阴"])
+	return dsms
 }
 
 //时辰定阴阳

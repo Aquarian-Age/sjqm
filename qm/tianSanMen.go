@@ -1,12 +1,13 @@
 package qm
 
 import (
+	"fmt"
 	"strings"
 )
 
 //从魁 小吉 太冲 即是天三门
 //如得本日贵人到乾亥，就是贵人登天门
-func TianSanMen(yj, hgz string) map[string]string {
+func TianSanMen(yj, hgz string) string {
 	ssmap := shenShaMap()
 	yjzhi := yjh(yj, hgz)
 
@@ -18,8 +19,8 @@ func TianSanMen(yj, hgz string) map[string]string {
 			}
 		}
 	}
-
-	return smmap
+	tsms := fmt.Sprintf("从魁在:%s 小吉在:%s 太冲在:%s", smmap["从魁"], smmap["小吉"], smmap["太冲"])
+	return tsms
 }
 
 //神煞map k:地月将 v:神煞

@@ -1,6 +1,7 @@
 package qm
 
 import (
+	"fmt"
 	"strings"
 )
 
@@ -36,5 +37,6 @@ func TianMa(yj, hgz string) (tms string) {
 			break
 		}
 	}
+	tms = fmt.Sprintf("天马:%s", tms)
 	return
 }
