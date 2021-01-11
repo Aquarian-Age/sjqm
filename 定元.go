@@ -26,15 +26,15 @@ func YuanN(dgz string) (string, int) {
 //符头
 func findFT(dgz string) (futou string) {
 	var i int
-	for i = 0; i < len(jz60); i++ {
-		if strings.EqualFold(dgz, jz60[i]) {
+	for i = 0; i < len(Jz60); i++ {
+		if strings.EqualFold(dgz, Jz60[i]) {
 			break
 		}
 	}
 
 	for j := i; j >= i-5; j-- {
-		if strings.ContainsAny(jz60[j], "甲") || strings.ContainsAny(jz60[j], "己") {
-			futou = jz60[j] //符头
+		if strings.ContainsAny(Jz60[j], "甲") || strings.ContainsAny(Jz60[j], "己") {
+			futou = Jz60[j] //符头
 			break
 		}
 	}

@@ -19,9 +19,9 @@ func FindZFNumber(zf string) (zfn int) {
 //旬首干支数组
 func FindXSGZArr(xunshou string) []string {
 	var gzarr []string
-	for i := 0; i < len(jz60); i++ {
-		if strings.EqualFold(xunshou, jz60[i]) {
-			gzarr = jz60[i : i+10]
+	for i := 0; i < len(Jz60); i++ {
+		if strings.EqualFold(xunshou, Jz60[i]) {
+			gzarr = Jz60[i : i+10]
 			break
 		}
 	}
