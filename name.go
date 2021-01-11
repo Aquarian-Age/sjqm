@@ -17,29 +17,29 @@ type JG struct {
 
 //九宫排盘结果信息
 type G struct {
-	JieQi   string //节气
-	YinYang string //阴阳遁
-	N       int    //定局数字
-	YUAN    string //元
-	XS      string //旬首
-	ZHIFU   string //值符
-	ZHISHI  string //值使
+	JieQi   string `json:"jie_qi"`   //节气
+	YinYang string `json:"yin_yang"` //阴阳遁
+	N       int    `json:"n"`        //定局数字
+	YUAN    string `json:"yuan"`     //元
+	XS      string `json:"xs"`       //旬首
+	ZHIFU   string `json:"zhifu"`    //值符
+	ZHISHI  string `json:"zhishi"`   //值使
 
-	G1   []string //一宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
-	G2   []string //二宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
-	G3   []string //三宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
-	G4   []string //四宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
-	G5   []string //五宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
-	G6   []string //六宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
-	G7   []string //七宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
-	G8   []string //八宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
-	G9   []string //九宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G1   []string `json:"g_1"` //一宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G2   []string `json:"g_2"` //二宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G3   []string `json:"g_3"` //三宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G4   []string `json:"g_4"` //四宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G5   []string `json:"g_5"` //五宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G6   []string `json:"g_6"` //六宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G7   []string `json:"g_7"` //七宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G8   []string `json:"g_8"` //八宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+	G9   []string `json:"g_9"` //九宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
 	JXXW *JXXW
 }
 
 //九宫排盘结果信息(map)
 type GMap struct {
-	ZhiShiMap map[int]string //排盘结果的值使八门信息
+	ZhiShiMap map[int]string `json:"zhi_shi_map"` //排盘结果的值使八门信息
 }
 
 //qm包结果信息(map)
