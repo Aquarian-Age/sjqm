@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"liangzi.local/nongli/solar"
 	"log"
@@ -26,6 +27,8 @@ func main() {
 	hgz := gz.HourGanZhiM
 	st := time.Date(s.SYear, time.Month(s.SMonth), s.SDay, s.SHour, 0, 0, 0, time.Local)
 	g, gmap := sjqm.Result(y, dgz, hgz, st)
+	fmt.Println("-------------1")
+	fmt.Println(g)
 	fmt.Println(ygz, mgz, dgz, hgz)
 
 	fmt.Printf("节气:%s %s %s %d局 旬首:%s 值符:%s 值使:%s\n"+
@@ -68,38 +71,52 @@ func main() {
 	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g2XW.StarName, g2XW.Wang, g2XW.Xiang, g2XW.Si, g2XW.Qiu, g2XW.Xiu)
 	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g7XW.StarName, g7XW.Wang, g7XW.Xiang, g7XW.Si, g7XW.Qiu, g7XW.Xiu)
 	fmt.Printf("%s 旺:%s 相:%s 死:%s 囚:%s 休:%s\n", g6XW.StarName, g6XW.Wang, g6XW.Xiang, g6XW.Si, g6XW.Qiu, g6XW.Xiu)
+	fmt.Println("------------")
 
 	g.G门破()
 	g.G天遁()
-	//孤虚
-	guxu := sjqm.HGuXu(dgz, hgz)
-	if _, ok := guxu["孤"]; ok {
-		fmt.Printf("孤:%s 虚:%s\n", guxu["孤"], guxu["虚"])
-	}
+	/*	//孤虚
+		guxu := sjqm.HGuXu(dgz, hgz)
+		if _, ok := guxu["孤"]; ok {
+			fmt.Printf("孤:%s 虚:%s\n", guxu["孤"], guxu["虚"])
+		}*/
 
 	//GMAP
 	//趋三避五
 	qbs := gmap.G趋三避五(g.ZHISHI)
-	fmt.Println(qbs)
+	fmt.Println("趋三避五:", qbs)
 
 	//QM
-	//	天门地户
 	jqt := solar.JQT(l.LYear)
 	solarT := s.SolarDayT
 	yj := solar.NewYueJiang(solarT, jqt)
-
 	qmStruct := sjqm.NewQM(yj.Zhi, dgz, hgz)
-	//fmt.Println(qmStruct)
+	//json
+	qmJs, err := json.Marshal(qmStruct)
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(string(qmJs)) //web
 
-	tmmap := qmStruct.TianSanMenMap //qm.TianSanMen(yj.Zhi, hgz)
-	fmt.Printf("天三门:\n月将:%s %s时: 从魁在%s为天门 小吉在%s为天门 太冲在%s为天门\n", yj.Name, hgz, tmmap["从魁"], tmmap["小吉"], tmmap["太冲"])
+	//天三门
+	//tmmap := qmStruct.TianSanMenMap
+	//fmt.Printf("天三门:\n月将:%s %s时: 从魁在%s为天门 小吉在%s为天门 太冲在%s为天门\n", yj.Name, hgz, tmmap["从魁"], tmmap["小吉"], tmmap["太冲"])
+	fmt.Println(qmStruct.TianSanMen)
 
-	sihumap := qmStruct.DiSiHuMap //qm.DiSiHu(hgz)
-	fmt.Printf("地四户:\n除在:%s 定在:%s 危在:%s 开在:%s\n", sihumap["除"], sihumap["定"], sihumap["危"], sihumap["开"])
-
+	//地四户
+	//sihumap := qmStruct.DiSiHuMap
+	//fmt.Printf("地四户:\n除在:%s 定在:%s 危在:%s 开在:%s\n", sihumap["除"], sihumap["定"], sihumap["危"], sihumap["开"])
+	fmt.Println(qmStruct.DiSiHu)
 	//地私门
-	dsmap := qmStruct.DiSiMenMap //qm.DiSiMen(yj.Zhi, dgz, hgz)
-	fmt.Printf("地私门: 六合:%s 太常:%s 太阴:%s\n", dsmap["六合"], dsmap["太常"], dsmap["太阴"])
+	//dsmap := qmStruct.DiSiMenMap
+	//fmt.Printf("地私门: 六合:%s 太常:%s 太阴:%s\n", dsmap["六合"], dsmap["太常"], dsmap["太阴"])
+	fmt.Println(qmStruct.DiSiMen)
+	//五符
+	fmt.Println(qmStruct.WuFu)
+	//天马
+	fmt.Println(qmStruct.TianMa)
+	//孤虚
+	fmt.Println(qmStruct.GuXu)
 
 	//时辰紫白
 	dzt, xzt := sjqm.FindT(st, y)
@@ -111,10 +128,10 @@ func main() {
 	fmt.Printf("%s落%d宫 %s\n", zbName, gn, zbsw)
 
 	///克应
-	var iqm sjqm.IQM
-	iqm = qmStruct
-	dsmkymap := iqm.DiSiMenKY()
-	//dsmkymap := qmStruct.DiSiMenKY()
-	fmt.Printf("地私门克应:%v\n", dsmkymap)
+	/*	var iqm sjqm.IQM
+		iqm = qmStruct
+		dsmkymap := iqm.DiSiMenKY()
+		//dsmkymap := qmStruct.DiSiMenKY()
+		fmt.Printf("地私门克应:%v\n", dsmkymap)*/
 
 }
