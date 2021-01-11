@@ -3,30 +3,31 @@ package sjqm
 
 import (
 	"liangzi.local/sjqm/qm"
-	"strings"
 )
 
-//QM结构体 yj:月将对应的地支
+//QM结构体 yjZhi:月将对应的地支
 func NewQM(yjZhi, dgz, hgz string) *QM {
 	qmap := new(QM)
-	siHumap := qm.DiSiHu(hgz)
-	diSiMenMap := qm.DiSiMen(yjZhi, dgz, hgz)
+	siHus := qm.DiSiHu(hgz)
+	diSiMens := qm.DiSiMen(yjZhi, dgz, hgz)
 	tms := qm.TianMa(yjZhi, hgz)
-	tianSanMenMap := qm.TianSanMen(yjZhi, hgz)
-	wuFuMap := qm.WuFu(dgz)
+	tianSanMens := qm.TianSanMen(yjZhi, hgz)
+	wuFusArr := qm.WuFu(dgz)
+	gux := qm.GuXuH(dgz, hgz)
 
 	qmap = &QM{
-		DiSiHuMap:     siHumap,
-		DiSiMenMap:    diSiMenMap,
-		TianMaS:       tms,
-		TianSanMenMap: tianSanMenMap,
-		WuFuMap:       wuFuMap,
+		DiSiHu:     siHus,
+		DiSiMen:    diSiMens,
+		TianMa:     tms,
+		TianSanMen: tianSanMens,
+		WuFu:       wuFusArr,
+		GuXu:       gux,
 	}
 	return qmap
 }
 
 //地私门克应
-func (qm *QM) DiSiMenKY() map[string]string {
+/*func (qm *QM) DiSiMenKY() map[string]string {
 	dsm := qm.DiSiMenMap
 	kymap := map[string]string{
 		"天乙": "行远良人,贵人车马,长者欢欣",
@@ -52,3 +53,4 @@ func (qm *QM) DiSiMenKY() map[string]string {
 	}
 	return dsmkymap
 }
+*/
