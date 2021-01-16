@@ -20,9 +20,9 @@ Name:          qimen
 Version:       0.6.9 
 Release:       0
 Summary:       QiMen
-License:       me
+License:       MIT
 Group:         Application
-Url:           https://github.com/Aquarian-Age/ccal/releases 
+Url:           https://github.com/Aquarian-Age/sjqm/releases
 Source0:       qimen.tar.gz 
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
