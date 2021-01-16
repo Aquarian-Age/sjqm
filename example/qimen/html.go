@@ -1,15 +1,13 @@
-<!DOCTYPE html>
+package main
+
+const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css">
-        #form1 {
-            text-align: center;
-            height: 30px;
-        }
         #p1,#p2 {
-            font-size: 200%;
+            font-size: 150%;
             white-space: pre
         }
         #tables,tr,td{
@@ -18,12 +16,20 @@
             border-collapse:collapse;
             border:1px solid #1F90FF;
         }
+        /*右下角显示*/
+        .ridgown{
+            position: fixed;
+            bottom: 3px;
+            right: 3px;
+            padding: 8px;
+            font-size: 150%;
+            white-space: pre;
+        }
     </style>
     <title>奇门</title>
 </head>
 
 <body>
-
     <form id="form1" name="formymdh">
         <!-- 下拉年 -->
         <select id="yearid" name="year">
@@ -113,6 +119,7 @@
 
     <p id="p1"></p>
     <p id="p2"></p>
+    <p class="ridgown" id="p3qm"></p>
 
     <table id="tables" rules="all" width="100%">
             <tr id="492">
@@ -223,7 +230,17 @@
               }else{
                 stdout.println("No data");
               }
+            var qmdJs = view.qmMethod(infoymdh.year,infoymdh.month, infoymdh.day, infoymdh.hour,infoymdh.zodiac, infoymdh.leapmb);
+            var qmd = parseData(qmdJs);
+             $(#p3qm).html="[地四户] "+qmd.di_si_hu + "<br>"+
+             "[地私门] "+qmd.di_si_men + "<br>"+
+             "[太冲天马] "+qmd.tian_ma + "<br>"+
+             "[天三门] "+qmd.tian_san_men +"<br>"+
+             "[五符] "+qmd.wu_fus[0]+" "+qmd.wu_fus[1]+" "+qmd.wu_fus[2]+" "+qmd.wu_fus[3]+" "+qmd.wu_fus[4]+" "+qmd.wu_fus[5]+"<br>"+
+              qmd.wu_fus[6]+" "+qmd.wu_fus[7]+" "+qmd.wu_fus[8]+" "+qmd.wu_fus[9]+" "+qmd.wu_fus[10]+" "+qmd.wu_fus[11]+"<br>"+
+             "[时孤虚] "+qmd.gu_xu + "<br>"
         });
     </script>
 </body>
 </html>
+`

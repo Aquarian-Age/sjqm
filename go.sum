@@ -2,6 +2,8 @@
 4d63.com/embedfiles v0.0.0-20190311033909-995e0740726f/go.mod h1:HxEsUxoVZyRxsZML/S6e2xAuieFMlGO0756ncWx1aXE=
 4d63.com/tz v1.2.0 h1:EpJt060xY+M+M0Wj8btz+THdOJbSxj4i8jhVQP3Wr0U=
 4d63.com/tz v1.2.0/go.mod h1:SHGqVdL7hd2ZaX2T9uEiOZ/OFAUfCCLURdLPJsd8ZNs=
+github.com/sciter-sdk/go-sciter v0.5.0 h1:A0gESvTFZR/yMFkWnQ4tFVUdsSchuShNGr25QodE8gQ=
+github.com/sciter-sdk/go-sciter v0.5.0/go.mod h1:myhbEunWE4R+6J7GxJsr4SU4q0OIMOEbWFJ2qYzIdPc=
 github.com/soniakeys/meeus/v3 v3.0.1 h1:inZIhWUeyumGoQ//CCZMI4qR2vPKCS6LbVPca2mDvqE=
 github.com/soniakeys/meeus/v3 v3.0.1/go.mod h1:G1tkqa+QcOyErSe7WqN0OnzVeLrvq9bQBoNb1IG+3n8=
 github.com/soniakeys/sexagesimal v1.0.0 h1:p4OW7ID1naq0+k0Sn/gvuS2hRgmEcuJrZeyyntOGLvU=

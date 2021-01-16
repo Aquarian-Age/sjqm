@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"liangzi.local/nongli/solar"
 	"log"
 	"strconv"
 	"time"
@@ -17,13 +18,13 @@ import (
 
 func main() {
 	w, err := window.New(sciter.SW_TITLEBAR|sciter.SW_RESIZEABLE|sciter.SW_CONTROLS|sciter.SW_MAIN,
-		&sciter.Rect{Left: 0, Top: 0, Right: 1280, Bottom: 800}, //设置初始窗口大小
+		&sciter.Rect{Left: 0, Top: 0, Right: 1000, Bottom: 800}, //设置初始窗口大小
 	)
 	if err != nil {
 		log.Fatal(err)
 	}
 	//加载文件
-	//w.LoadFile("ccal.html")
+	///w.LoadFile("ccal.html")
 	w.LoadHtml(html, "")
 	setWinHandler(w)
 	w.Show()
@@ -33,6 +34,7 @@ func main() {
 //#################################
 func setWinHandler(w *window.Window) {
 	w.DefineFunction("qimeninfo", qimeninfo)
+	w.DefineFunction("qmMethod", qmMethod)
 	w.DefineFunction("ymdinfo", ymdinfo)
 }
 
@@ -56,6 +58,25 @@ func qimeninfo(args ...*sciter.Value) *sciter.Value {
 	}
 	jsG := string(byteg)
 	return sciter.NewValue(jsG)
+}
+func qmMethod(args ...*sciter.Value) *sciter.Value {
+	ly, lm, ld, lh, sx, lmb := args[0].String(), args[1].String(), args[2].String(), args[3].String(), args[4].String(), args[5].String()
+	y, m, d, h, b := ConvStoInt(ly, lm, ld, lh, lmb)
+	err, s, l, g, _ := ccal.Input(y, m, d, h, sx, b)
+	if err != nil {
+		log.Fatal("ccal-input:", err)
+	}
+	dgz := fmt.Sprintf("%s%s", g.DayGanM, g.DayZhiM)
+	hgz := g.HourGanZhiM
+	jqt := solar.JQT(l.LYear)
+	solarT := s.SolarDayT
+	yj := solar.NewYueJiang(solarT, jqt)
+	qmStruct := sjqm.NewQM(yj.Zhi, dgz, hgz)
+	qmJs, err := json.Marshal(qmStruct)
+	if err != nil {
+		log.Fatal("qm:", err)
+	}
+	return sciter.NewValue(string(qmJs))
 }
 
 //纪年信息
