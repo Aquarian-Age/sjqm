@@ -4,7 +4,7 @@
 
 ### 安装
 
-openSUSE Tumbleweed [下载]rpm包 
+openSUSE Tumbleweed [下载](https://github.com/Aquarian-Age/sjqm/releases)rpm包 
 ```bash
 sudo rpm -iv qimen-0.6.9-0.x86_64.rpm
 ```
