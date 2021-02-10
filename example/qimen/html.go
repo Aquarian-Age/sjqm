@@ -102,12 +102,13 @@ const html = `<!DOCTYPE html>
             </script>
         </select>
         <!--闰月选择-->
-        <select id="leapmbid" name="lmb">
+        <select id="leapmbid" name="lmb" title="闰月">
             <script type="text/tiscript">
                     var selectmb=$(select#leapmbid);
-                    var mbarr =["否","是"];
+                    var larr =["f","t"];
+					var mbarr = ["否","是"];
                     for (var i =0;i<2;++i){
-                      selectmb.options.append(<option value={i}>{mbarr[i]}</option>);
+                      selectmb.options.append(<option value={larr[i]}>{mbarr[i]}</option>);
                       var mb = select.text;
                       selectmb.value = 0;
                      }

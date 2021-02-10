@@ -1,5 +1,5 @@
 #
-# spec file for package groff-utf8-1.22.tar.gz
+# spec file for package sjqm.tar.gz
 #
 # Copyright (c) 2018 SUSE LINUX GmbH, Nuernberg, Germany.
 #
@@ -18,7 +18,7 @@
 
 Name:          qimen
 Version:       0.6.9 
-Release:       0
+Release:       3
 Summary:       QiMen
 License:       MIT
 Group:         Application
