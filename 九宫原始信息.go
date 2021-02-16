@@ -1,7 +1,7 @@
 package sjqm
 
 import (
-	"liangzi.local/nongli/ganzhi"
+	"liangzi.local/cal/cal"
 	"strings"
 )
 
@@ -51,10 +51,10 @@ func NewJXXW(starName string) *JXXW {
 
 func wxsqx(zhi []string, wx1 string) (wang, xiang, si, qiu, xiu []string) {
 	for i := 0; i < len(zhi); i++ {
-		zs := ganzhi.NewZHI(zhi[i])
+		zs := cal.NewZHI(zhi[i])
 		if strings.EqualFold(zhi[i], zs.Name) {
 			wx2 := zs.WuXing //五行属性
-			n := ganzhi.Wxsk(wx1, wx2)
+			n := cal.Wxsk(wx1, wx2)
 			switch n {
 			case 1: //我生 wx1生wx2
 				wang = append(wang, zhi[i])

@@ -1,20 +1,26 @@
 package sjqm
 
 import (
+	"liangzi.local/cal/cal"
 	"time"
-
-	"liangzi.local/nongli/solar"
 )
 
 func Result(y int, dgz, hgz string, st time.Time) (*G, *GMap) {
-	jqt := solar.JQT(y)
-	jq := solar.NewJQ(jqt)
+	//	jqt := solar.JQT(y)
+	//	jq := solar.NewJQ(jqt)
 	//fmt.Printf("%v\n", jq)
-	jqnames := jq.Name //节气名称数组
-	jqarr := jq.Time
+	//	jqnames := jq.Name //节气名称数组
+	//jqarr := jq.Time
 
-	_, dzt := jq.Q冬至()
-	_, xzt := jq.Q夏至()
+	//_, dzt := jq.Q冬至()
+	//_, xzt := jq.Q夏至()
+	/////////
+	jqobj := cal.NewJQArr(y)
+	jqnames := jqobj.Name
+	jqarr := jqobj.Time
+	dzt := jqobj.Time[24]
+	xzt := jqobj.Time[12]
+	/////////
 	st = time.Date(st.Year(), st.Month(), st.Day(), st.Hour(), 0, 0, 0, time.Local)
 	//定节气
 	index, jmc := FindJQ(st, jqarr, jqnames)

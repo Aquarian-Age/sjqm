@@ -1,9 +1,9 @@
 package sjqm
 
-import "liangzi.local/nongli/ganzhi"
+import "liangzi.local/cal/cal"
 
 //六十甲子 0:甲子 1:乙丑 2:丙寅...59:癸亥
-var Jz60 = ganzhi.MakeJZ60()
+var Jz60 = cal.MakeJZ60()
 
 //九宫原始信息
 type JG struct {

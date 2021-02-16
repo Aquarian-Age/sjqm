@@ -1,8 +1,7 @@
 package sjqm
 
 import (
-	"liangzi.local/nongli/ganzhi"
-	"liangzi.local/nongli/solar"
+	"liangzi.local/cal/cal"
 	"liangzi.local/sjqm/qm"
 	"strings"
 	"time"
@@ -46,8 +45,7 @@ func ZiBaiH(dgz, hgz string, st time.Time, sy int) (hx int) {
 	dzt, xzt := FindT(st, sy)
 	//_, yuanN := YuanN(dgz)            //元 0上元 1中元 2下元
 	yinYangN := YinYang(st, dzt, xzt) //1阳局 0阴局
-
-	hn := ganzhi.ConvHGZToNumber(hgz) //时辰数字
+	hn := cal.ConvHGZToNumber(hgz)    //时辰数字
 	sw := qm.ShengWang(dgz)           //生 旺(正) 墓
 
 	switch yinYangN {
@@ -97,10 +95,15 @@ func findN(gz string) int {
 //冬至夏至时间
 //这里时间精确到日
 func FindT(st time.Time, sy int) (time.Time, time.Time) {
-	jqt := solar.JQT(sy)
-	JQ := solar.NewJQ(jqt)
-	_, dzt := JQ.Q冬至()
-	_, xzt := JQ.Q夏至()
+	//jqt := solar.JQT(sy)
+	//	JQ := solar.NewJQ(jqt)
+	//	_, dzt := JQ.Q冬至()
+	//	_, xzt := JQ.Q夏至()
+
+	jqArr := cal.NewJQArr(sy)
+	xzt := jqArr.Time[12] //夏至
+	dzt := jqArr.Time[24] //冬至
+
 	dzt = time.Date(dzt.Year(), dzt.Month(), dzt.Day(), 0, 0, 0, 0, time.Local)
 	xzt = time.Date(xzt.Year(), xzt.Month(), xzt.Day(), 0, 0, 0, 0, time.Local)
 	st = time.Date(st.Year(), st.Month(), st.Day(), 0, 0, 0, 0, time.Local)
@@ -188,7 +191,7 @@ func ZiBaiShengWang(zbn int, zbGmap map[int]int) (gn int, swts string) {
 	gwx := findGnSelf(gn)    //紫白落宫五行
 
 	//比和n=0 前者生后者n=1 前者克后者n=-1 后者生前者n=2 后者克前者n=-2
-	wxn := ganzhi.Wxsk(zbwx, gwx)
+	wxn := cal.Wxsk(zbwx, gwx)
 	switch wxn {
 	case 0: //比和为旺
 		swts = "旺"

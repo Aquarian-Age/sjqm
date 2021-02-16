@@ -1,7 +1,7 @@
 package qm
 
 import (
-	"liangzi.local/nongli/ganzhi"
+	"liangzi.local/cal/cal"
 	"strings"
 )
 
@@ -35,7 +35,7 @@ func ZiBaiY(n int, ygz string) (yx int) {
 
 //月紫白起法
 func ZiBaiM(ygz, mgz string) (mx int) {
-	lm := ganzhi.ConvMGZToNumber(mgz) //lm:农历月的数字
+	lm := cal.ConvMGZToNumber(mgz) //lm:农历月的数字
 
 	switch ShengWang(ygz) {
 	case "生":
@@ -53,7 +53,7 @@ func ZiBaiM(ygz, mgz string) (mx int) {
 
 //按《⻓生墓绝表》生 寅申⺒亥,旺 子午卯酉。墓 辰戌丑未
 func ShengWang(ygz string) (sw string) {
-	zhi := ganzhi.Zhi
+	zhi := cal.Zhi
 	var n int
 	for i := 0; i < len(zhi); i++ {
 		if strings.ContainsAny(ygz, zhi[i]) {
@@ -74,8 +74,8 @@ func ShengWang(ygz string) (sw string) {
 
 //天干数子 地支数字
 func FindgZhiN(ygz string) (gn, zn int) {
-	gan := ganzhi.Gan //十天干 甲1 乙2 丙3 丁4 戊5 己6 庚7 辛8 壬9 癸10
-	zhi := ganzhi.Zhi //十二地支 子1 丑2 寅3 卯4 辰5 巳6 午7 未8 申9 酉10 戌11 亥12
+	gan := cal.Gan //十天干 甲1 乙2 丙3 丁4 戊5 己6 庚7 辛8 壬9 癸10
+	zhi := cal.Zhi //十二地支 子1 丑2 寅3 卯4 辰5 巳6 午7 未8 申9 酉10 戌11 亥12
 	for i := 0; i < len(gan); i++ {
 		if strings.ContainsAny(ygz, gan[i]) {
 			gn = i

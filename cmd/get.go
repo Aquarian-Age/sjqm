@@ -9,11 +9,11 @@ import (
 
 //命令行輸入內容
 type Input struct {
-	Y int  //年數字
-	M int  //月數字
-	D int  //日數字
-	H int  //時辰數字　1子時　2丑時...１２亥時
-	B bool //閏月判斷　f非閏月　t當月爲閏月
+	Y int //年數字
+	M int //月數字
+	D int //日數字
+	H int //時辰數字　1子時　2丑時...１２亥時
+	//	B bool //閏月判斷　f非閏月　t當月爲閏月
 }
 
 func GetInPut() *Input {
@@ -30,7 +30,7 @@ func GetInPut() *Input {
 	ms := string(rs[4:6]) //月數字
 	ds := string(rs[6:8])
 	hs := string(rs[8:10]) //時辰數字1子時　2丑時...１２亥時
-	bs := string(rs[10:11])
+	//bs := string(rs[10:11])
 
 	y, err := strconv.Atoi(ys)
 	if err != nil {
@@ -49,15 +49,15 @@ func GetInPut() *Input {
 	if err != nil {
 		log.Fatal("時辰解析:", err)
 	}
-	b, err := strconv.ParseBool(bs)
-	if err != nil {
-		log.Fatal("閏月解析:", err)
-	}
+	//b, err := strconv.ParseBool(bs)
+	//if err != nil {
+	//	log.Fatal("閏月解析:", err)
+	//}
 	return &Input{
 		Y: y,
 		D: d,
 		M: m,
 		H: h,
-		B: b,
+		//	B: b,
 	}
 }

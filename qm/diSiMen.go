@@ -2,14 +2,14 @@ package qm
 
 import (
 	"fmt"
-	"liangzi.local/nongli/ganzhi"
+	"liangzi.local/cal/cal"
 	"strings"
 )
 
 //地私门 六合 太阴 太常
 func DiSiMen(yj, dgz, hgz string) string {
 
-	yang, yin := ganzhi.GuiRenJue(dgz)
+	yang, yin := cal.GuiRenJue(dgz)
 	hyy, index := hgzYinYang(hgz)
 
 	var dsMap = make(map[string]string)

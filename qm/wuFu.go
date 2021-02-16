@@ -2,7 +2,7 @@ package qm
 
 import (
 	"fmt"
-	"liangzi.local/nongli/ganzhi"
+	"liangzi.local/cal/cal"
 	"strings"
 )
 
@@ -16,7 +16,7 @@ func WuFu(dgz string) []string {
 	wfs := []string{"五符", "天曹", "地符", "风伯", "雷公", "雨师", "风云", "唐符", "国印", "天官", "地轴", "天贼"}
 	zhi := []string{"子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"}
 
-	rlu := ganzhi.GZ禄(dgz) //日禄
+	rlu := cal.Lu(dgz) //日禄
 
 	for i := 0; i < len(zhi); i++ {
 		if strings.EqualFold(rlu, zhi[i]) {
