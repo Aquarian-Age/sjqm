@@ -1,7 +1,7 @@
 package qm
 
 import (
-	"liangzi.local/cal/cal"
+	"liangzi.local/cal"
 	"strings"
 )
 

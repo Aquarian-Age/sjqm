@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"liangzi.local/cal/cal"
+	"liangzi.local/cal"
 	"liangzi.local/sjqm"
 	"log"
 	"time"
@@ -11,7 +11,7 @@ import (
 
 func main() {
 	//input := cmd.GetInPut()
-	y, m, d, h := 2021, 2, 16, 19
+	y, m, d, h := 2021, 2, 25, 21
 	gz := cal.NewGanZhiInfo(y, m, d, h)
 	ygz := gz.YearGZ  //"辛丑" //fmt.Sprintf("%s%s", gz.YearGanM, gz.YearZhiM)
 	mgz := gz.MonthGZ //"庚寅" //fmt.Sprintf("%s%s", gz.DayGanM, gz.DayZhiM)

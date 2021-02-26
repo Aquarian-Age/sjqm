@@ -1,7 +1,7 @@
 package sjqm
 
 import (
-	"liangzi.local/cal/cal"
+	"liangzi.local/cal"
 	"liangzi.local/sjqm/qm"
 	"strings"
 	"time"
