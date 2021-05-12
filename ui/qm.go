@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/Aquarian-Age/sjqm"
 	"liangzi.local/cal"
-	"liangzi.local/sjqm"
 	"log"
 	"strconv"
 	"time"
