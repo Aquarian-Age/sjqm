@@ -1,19 +1,14 @@
-//奇门方法 克应
 package sjqm
-
-import (
-	"liangzi.local/sjqm/qm"
-)
 
 //QM结构体 yjZhi:月将对应的地支
 func NewQM(yjZhi, dgz, hgz string) *QM {
 	qmap := new(QM)
-	siHus := qm.DiSiHu(hgz)
-	diSiMens := qm.DiSiMen(yjZhi, dgz, hgz)
-	tms := qm.TianMa(yjZhi, hgz)
-	tianSanMens := qm.TianSanMen(yjZhi, hgz)
-	wuFusArr := qm.WuFu(dgz)
-	gux := qm.GuXuH(dgz, hgz)
+	siHus := DiSiHu(hgz)
+	diSiMens := DiSiMen(yjZhi, dgz, hgz)
+	tms := TianMa(yjZhi, hgz)
+	tianSanMens := TianSanMen(yjZhi, hgz)
+	wuFusArr := WuFu(dgz)
+	gux := GuXuH(dgz, hgz)
 
 	qmap = &QM{
 		DiSiHu:     siHus,

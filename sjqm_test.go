@@ -13,7 +13,7 @@ var (
 		"冬至", "小寒", "大寒", "立春", "雨水", "惊蛰", "春分", "清明", "谷雨", "立夏", "小满", "芒种",
 		"夏至", "小暑", "大暑", "立秋", "处暑", "白露", "秋分", "寒露", "霜降", "立冬", "小雪", "大雪",
 		"冬至", "小寒", "大寒", "立春"}
-	jzArr = []string{
+	jzArrS = []string{
 		"甲子", "乙丑", "丙寅", "丁卯", "戊辰", "己巳", "庚午", "辛未", "壬申", "癸酉", //0-9  甲子干支时辰
 		"甲戌", "乙亥", "丙子", "丁丑", "戊寅", "己卯", "庚辰", "辛巳", "壬午", "癸未", //10-19 甲戌干支时辰
 		"甲申", "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅", "辛卯", "壬辰", "癸巳", //20-29 甲申干支时辰
@@ -261,9 +261,9 @@ func Test三奇六仪(t *testing.T) {
 //旬首 测试
 func Test旬首(t *testing.T) {
 
-	for i := 0; i < len(jzArr); i++ {
+	for i := 0; i < len(jzArrS); i++ {
 		if i < 10 {
-			expHgzArr := jzArr[:10]
+			expHgzArr := jzArrS[:10]
 			actual := xsArr[0]
 			if xs, _ := XunShou(expHgzArr[i]); !strings.EqualFold(xs, actual) {
 				t.Errorf("XunShou(%s)=%s 预期值:%s\n", expHgzArr[i], xs, actual)
@@ -271,7 +271,7 @@ func Test旬首(t *testing.T) {
 		}
 
 		if i >= 10 && i < 20 {
-			expHgzArr := jzArr[10:20]
+			expHgzArr := jzArrS[10:20]
 			actual := xsArr[1]
 			if xs, _ := XunShou(expHgzArr[i-10]); !strings.EqualFold(xs, actual) {
 				t.Errorf("XunShou(%s)=%s 预期值:%s\n", expHgzArr[i-10], xs, actual)
@@ -279,7 +279,7 @@ func Test旬首(t *testing.T) {
 		}
 
 		if i >= 20 && i < 30 {
-			expHgzArr := jzArr[20:30]
+			expHgzArr := jzArrS[20:30]
 			actual := xsArr[2]
 			if xs, _ := XunShou(expHgzArr[i-20]); !strings.EqualFold(xs, actual) {
 				t.Errorf("XunShou(%s)=%s 预期值:%s\n", expHgzArr[i-20], xs, actual)
@@ -287,7 +287,7 @@ func Test旬首(t *testing.T) {
 		}
 
 		if i >= 30 && i < 40 {
-			expHgzArr := jzArr[30:40]
+			expHgzArr := jzArrS[30:40]
 			actual := xsArr[3]
 			if xs, _ := XunShou(expHgzArr[i-30]); !strings.EqualFold(xs, actual) {
 				t.Errorf("XunShou(%s)=%s 预期值:%s\n", expHgzArr[i-30], xs, actual)
@@ -295,7 +295,7 @@ func Test旬首(t *testing.T) {
 		}
 
 		if i >= 40 && i < 50 {
-			expHgzArr := jzArr[40:50]
+			expHgzArr := jzArrS[40:50]
 			actual := xsArr[4]
 			if xs, _ := XunShou(expHgzArr[i-40]); !strings.EqualFold(xs, actual) {
 				t.Errorf("XunShou(%s)=%s 预期值:%s\n", expHgzArr[i-40], xs, actual)
@@ -303,7 +303,7 @@ func Test旬首(t *testing.T) {
 		}
 
 		if i >= 50 && i < 60 {
-			expHgzArr := jzArr[50:60]
+			expHgzArr := jzArrS[50:60]
 			actual := xsArr[5]
 			if xs, _ := XunShou(expHgzArr[i-50]); !strings.EqualFold(xs, actual) {
 				t.Errorf("XunShou(%s)=%s 预期值:%s\n", expHgzArr[i-50], xs, actual)
@@ -315,12 +315,12 @@ func Test旬首(t *testing.T) {
 //寻找值符值使 测试
 func Test值符随时干(t *testing.T) {
 	//六甲旬遁: 甲子遁戊　甲戌遁己　甲申遁庚　甲午遁辛　甲辰遁壬　甲寅遁
-	xsGZArr1 := jzArr[:10]
-	//xsGZArr2 := jzArr[10:20]
-	//xsGZArr3 := jzArr[20:30]
-	xsGZArr4 := jzArr[30:40]
-	//xsGZArr5 := jzArr[40:50]
-	//xsGZArr6 := jzArr[50:]
+	xsGZArr1 := jzArrS[:10]
+	//xsGZArr2 := jzArrS[10:20]
+	//xsGZArr3 := jzArrS[20:30]
+	xsGZArr4 := jzArrS[30:40]
+	//xsGZArr5 := jzArrS[40:50]
+	//xsGZArr6 := jzArrS[50:]
 
 	旬首1 := "甲子"
 	//旬首2 := "甲戌"

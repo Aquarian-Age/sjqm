@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-//九宫原始信息 少了中宫....
+// JGMap 九宫原始信息 少了中宫....
 func JGMap() map[int]JG {
 	var jginfo = make(map[int]JG)
 	jginfo = map[int]JG{
@@ -25,7 +25,7 @@ func JGMap() map[int]JG {
 	return jginfo
 }
 
-//九星休旺
+// NewJXXW 九星休旺
 //旺:我生之月 相:月类之月 死:生我之月 囚:克我之月 休:我克之月
 func NewJXXW(starName string) *JXXW {
 	zhi := []string{"寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥", "子", "丑"}

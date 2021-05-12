@@ -6,15 +6,6 @@ import (
 )
 
 func Result(y int, dgz, hgz string, st time.Time) (*G, *GMap) {
-	//	jqt := solar.JQT(y)
-	//	jq := solar.NewJQ(jqt)
-	//fmt.Printf("%v\n", jq)
-	//	jqnames := jq.Name //节气名称数组
-	//jqarr := jq.Time
-
-	//_, dzt := jq.Q冬至()
-	//_, xzt := jq.Q夏至()
-	/////////
 	jqobj := cal.NewJQArr(y)
 	jqnames := jqobj.Name
 	jqarr := jqobj.Time
@@ -24,7 +15,6 @@ func Result(y int, dgz, hgz string, st time.Time) (*G, *GMap) {
 	st = time.Date(st.Year(), st.Month(), st.Day(), st.Hour(), 0, 0, 0, time.Local)
 	//定节气
 	index, jmc := FindJQ(st, jqarr, jqnames)
-	//fmt.Printf("index:%d jmc:%s\n", index, jmc)
 	//定阴阳遁
 	yinyangN := YinYang(st, dzt, xzt)
 	var yy string
@@ -34,54 +24,34 @@ func Result(y int, dgz, hgz string, st time.Time) (*G, *GMap) {
 	if yinyangN == 1 {
 		yy = "阳遁"
 	}
-	//fmt.Println(yy)
 	//定元
 	yuanx, yn := YuanN(dgz)
-	//fmt.Println(yuanx)
 	//定局
 	juN := FindJU(yn, index, jqnames)
-	//fmt.Println(juN)
 	sqly := FindSqly(yinyangN, juN)
-	//fmt.Printf("地盘三奇六仪:%v\n", sqly)
 	//旬首
 	xunshou, indexXS := XunShou(hgz)
-	//fmt.Printf("旬首:%s\n", xunshou)
 	xsGZArr := 旬首干支数组(indexXS)
-
 	//时辰旬首对应的九宫位置数字
 	xunShouNumber, _, dun := XunShouHour(xunshou, hgz, xsGZArr, sqly)
-	//fmt.Printf("值符在%d宫位置 遁:%s\n", xunShouNumber, dun)
-
 	//值符
 	zf, dunN := SelfZF(dun, sqly)
-	//fmt.Printf("值符:%s 原始宫位数字:%d\n", zf, dunN)
 	starArr := SortStar(zf)
-	//fmt.Printf("九星排序:%s\n", starArr)
-
 	//九星配宫
 	starmap := ZhiFuStar(xunShouNumber, starArr)
-	//fmt.Printf("值符:%s\n九星:%v\n", zf, starmap)
-
 	//六仪三奇配九星
 	starQYmap := StarQY(starArr, sqly, dunN, starmap)
-
 	//暗干支
 	zfn := FindZFNumber(zf)       //值符原始宫位
 	gzarr := FindXSGZArr(xunshou) //旬首干支数组
 	agzmap := AnGZ(zfn, gzarr, yinyangN)
-	//fmt.Printf("暗干支:%v\n", agzmap)
-
 	//值使八门
 	zhis := FindZS(zfn)
-	//fmt.Printf("值使:%s\n", zhis)
 	zhishimap := ZhiShi(hgz, agzmap, zhis)
-	//fmt.Printf("-->值使八门:%v\n", zhishimap)
-
 	//八神
 	bsmap := BaShen(xunShouNumber, yinyangN)
-	//fmt.Printf("八神:%v\n", bsmap)
 
-	////////////////////////////////////////////////结果
+	//结果
 	//starmap:值符(九星) zhishimap:值使(八门) agzmap:暗干支 starQYmap:天盘奇仪 bsmap:八神 sqly:地盘奇仪
 	var arr1, arr2, arr3, arr4, arr5, arr6, arr7, arr8, arr9 []string
 	arr1 = append(arr1, starmap[1], zhishimap[1], agzmap[1], starQYmap[1], bsmap[1], sqly[1]) //一宫信息

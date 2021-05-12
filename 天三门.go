@@ -1,4 +1,4 @@
-package qm
+package sjqm
 
 import (
 	"fmt"
@@ -25,12 +25,12 @@ func TianSanMen(yj, hgz string) string {
 
 //神煞map k:地月将 v:神煞
 func shenShaMap() map[string]string {
-	ss := []string{"神后", "大吉", "功曹", "太冲", "天罡", "太乙", "胜光", "小吉", "传送", "从魁", "河魁", "登明"}
+	shen := []string{"神后", "大吉", "功曹", "太冲", "天罡", "太乙", "胜光", "小吉", "传送", "从魁", "河魁", "登明"}
 	zhi := []string{"子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"}
 	var shenMap = make(map[string]string)
 	for k := 0; k < len(zhi); k++ {
-		for v := k; v < len(ss); v++ {
-			shenMap[zhi[v]] = ss[v]
+		for v := k; v < len(shen); v++ {
+			shenMap[zhi[v]] = shen[v]
 		}
 	}
 	//找太冲 小吉 从魁三门
@@ -42,13 +42,12 @@ func shenShaMap() map[string]string {
 			smmap[z] = name
 		}
 	}
-	return smmap //shenMap
+	return smmap
 }
 
 //月将加时辰 k:天月将 v:地月将
 func yjh(yj, hgz string) map[string]string {
 	zhi := []string{"亥", "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌"}
-	//fmt.Println("地月将:  ", zhi)
 	var index int
 	for j := 0; j < len(zhi); j++ {
 		if strings.ContainsAny(hgz, zhi[j]) {
@@ -67,7 +66,6 @@ func yjh(yj, hgz string) map[string]string {
 			break
 		}
 	}
-	//fmt.Printf("-->天月将排序:%s\n", yjzhi)
 
 	end := zhi[index:]     //天月将加时辰 地月将的后半部分
 	s1 := yjzhi[:len(end)] //天月将后半部分
@@ -80,11 +78,13 @@ func yjh(yj, hgz string) map[string]string {
 	//天月将map k:天月将 v:地月将
 	var tyjmap = make(map[string]string)
 	for k := 0; k < len(tyj); k++ {
-		for v := k; v < len(zhi); v++ {
-			tyjmap[tyj[v]] = zhi[v]
-			break
+		for v := 0; v < len(zhi); v++ {
+			if k == v {
+				tyjmap[tyj[v]] = zhi[v]
+				break
+			}
 		}
 	}
-	//fmt.Printf("-->天月将:%v\n", tyjmap)
+
 	return tyjmap
 }

@@ -4,9 +4,9 @@ import (
 	"strings"
 )
 
+//yn:三元数字 上0 中1 下2 index:节气名称的索引数字 jqnames:节气数组 0:冬至 1小寒 2大寒...
 //定局
 func FindJU(yn int, index int, jqnames []string) (jn int) {
-	//yn:三元数字 上0 中1 下2 index:节气名称的索引数字 jqnames:节气数组 0:冬至 1小寒 2大寒...
 	for i := 0; i < len(jqnames); i++ {
 		if index == i {
 			for name, intarr := range JieNumber() {
@@ -49,7 +49,5 @@ func JieNumber() map[string][]int {
 	jqmap["小雪"] = []int{5, 8, 2}
 	jqmap["大雪"] = []int{4, 7, 1}
 
-	//fmt.Printf("len:%d\n", len(jqmap))
 	return jqmap
-
 }

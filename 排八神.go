@@ -22,9 +22,11 @@ func BaShen(zhif int, yy int) (baShenMap map[int]string) {
 				x = append(x2, x1...)
 				//八神配宫
 				for xn := 0; xn < len(x); xn++ {
-					for sn := xn; sn < len(bs); sn++ {
-						bsmap[x[xn]] = bs[sn]
-						break
+					for sn := 0; sn < len(bs); sn++ {
+						if xn == sn {
+							bsmap[x[xn]] = bs[sn]
+							break
+						}
 					}
 				}
 				break
@@ -41,15 +43,16 @@ func BaShen(zhif int, yy int) (baShenMap map[int]string) {
 				x = append(x2, x1...)
 				//八神配宫
 				for xn := 0; xn < len(x); xn++ {
-					for sn := xn; sn < len(bs); sn++ {
-						bsmap[x[xn]] = bs[sn]
-						break
+					for sn := 0; sn < len(bs); sn++ {
+						if xn == sn {
+							bsmap[x[xn]] = bs[sn]
+							break
+						}
 					}
 				}
 				break
 			}
 		}
-		//	fmt.Printf("八神：%v\n", bsmap)
 		baShenMap = bsmap
 	}
 	return

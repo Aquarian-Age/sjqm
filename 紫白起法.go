@@ -1,4 +1,4 @@
-package qm
+package sjqm
 
 import (
 	"liangzi.local/cal"

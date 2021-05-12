@@ -8,7 +8,6 @@ import (
 func FindZFNumber(zf string) (zfn int) {
 	for _, g := range JGMap() {
 		if strings.EqualFold(g.Star, zf) {
-			//fmt.Printf("-->值符:%s原始宫位:%d\n", zf, g.Number)
 			zfn = g.Number
 			break
 		}
@@ -25,7 +24,6 @@ func FindXSGZArr(xunshou string) []string {
 			break
 		}
 	}
-	//fmt.Printf("-->旬首干支数组gzarr:%s\n", gzarr)
 	return gzarr
 }
 
@@ -46,9 +44,11 @@ func AnGZ(zfn int, gzarr []string, yinyang int) (agz map[int]string) {
 		}
 		///干支配值符原始宫
 		for gi := 0; gi < len(gzarr); gi++ {
-			for xi := gi; xi < len(x); xi++ {
-				aGZmap[x[xi]] = gzarr[gi]
-				break
+			for xi := 0; xi < len(x); xi++ {
+				if gi == xi {
+					aGZmap[x[xi]] = gzarr[gi]
+					break
+				}
 			}
 		}
 		aGZmap[x[0]] = gzarr[0] + " " + gzarr[9] //最后一个暗干支加到起始宫位上(值符原始宫位)
@@ -64,9 +64,11 @@ func AnGZ(zfn int, gzarr []string, yinyang int) (agz map[int]string) {
 		}
 		///干支配值符原始宫
 		for gi := 0; gi < len(gzarr); gi++ {
-			for xi := gi; xi < len(x); xi++ {
-				aGZmap[x[xi]] = gzarr[gi]
-				break
+			for xi := 0; xi < len(x); xi++ {
+				if gi == xi {
+					aGZmap[x[xi]] = gzarr[gi]
+					break
+				}
 			}
 		}
 		aGZmap[x[0]] = gzarr[0] + " " + gzarr[9]

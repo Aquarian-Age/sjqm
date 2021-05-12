@@ -2,7 +2,6 @@ package sjqm
 
 import (
 	"liangzi.local/cal"
-	"liangzi.local/sjqm/qm"
 	"strings"
 	"time"
 )
@@ -43,10 +42,9 @@ func ZiBaiD(dgz string, st time.Time, sy int) (dx int) {
 //时辰紫白起法
 func ZiBaiH(dgz, hgz string, st time.Time, sy int) (hx int) {
 	dzt, xzt := FindT(st, sy)
-	//_, yuanN := YuanN(dgz)            //元 0上元 1中元 2下元
 	yinYangN := YinYang(st, dzt, xzt) //1阳局 0阴局
 	hn := cal.ConvHGZToNumber(hgz)    //时辰数字
-	sw := qm.ShengWang(dgz)           //生 旺(正) 墓
+	sw := ShengWang(dgz)              //生 旺(正) 墓
 
 	switch yinYangN {
 	case 1:
@@ -77,7 +75,7 @@ func ZiBaiH(dgz, hgz string, st time.Time, sy int) (hx int) {
 
 //柱数 适用年及日
 func findN(gz string) int {
-	gn, zn := qm.FindgZhiN(gz)
+	gn, zn := FindgZhiN(gz)
 	ex0, ex1 := 0, 60 //预备数
 	diff := gn - zn
 
@@ -95,11 +93,6 @@ func findN(gz string) int {
 //冬至夏至时间
 //这里时间精确到日
 func FindT(st time.Time, sy int) (time.Time, time.Time) {
-	//jqt := solar.JQT(sy)
-	//	JQ := solar.NewJQ(jqt)
-	//	_, dzt := JQ.Q冬至()
-	//	_, xzt := JQ.Q夏至()
-
 	jqArr := cal.NewJQArr(sy)
 	xzt := jqArr.Time[12] //夏至
 	dzt := jqArr.Time[24] //冬至
@@ -112,25 +105,20 @@ func FindT(st time.Time, sy int) (time.Time, time.Time) {
 }
 
 /*#############紫白飞宫#################*/
-//k:紫白数 v:落宫数
-func ZiBaiGmap(zbn, yy int) (zbGmap map[int]int) {
-	//zbn:紫白入中宫数字(紫白起法值) yy:0阴局 1阳局
 
+//zbn:紫白入中宫数字(紫白起法值) yy:0阴局 1阳局  zbGmap k:紫白数 v:落宫数
+func ZiBaiGmap(zbn, yy int) (zbGmap map[int]int) {
 	//重新排列紫白顺序以配合飞宫数组
 	//阳顺排
 	zbi := reZbn(zbn)
-	//fmt.Printf("阳顺 重排紫白顺序:%d\n", zbi)
 	//阴逆排
 	rzbi := reArr(zbi)
-	//fmt.Printf("阴逆 重排紫白顺序:%d\n", rzbi)
 
 	//567891234:顺飞 	543219876:逆飞
 	//阳局顺排飞宫 [5 6 7 8 9 1 2 3 4]
 	garr := []int{5, 6, 7, 8, 9, 1, 2, 3, 4}
-	//fmt.Printf("阳 顺排飞宫%d\n", garr)
 	//阴局逆序排飞宫 [5 4 3 2 1 9 8 7 6]
 	rgarr := reArr(garr) //阴 逆排飞宫
-	//fmt.Printf("阴 逆排飞宫%d\n", rgarr)
 
 	switch yy {
 	case 1:
@@ -145,9 +133,11 @@ func ZiBaiGmap(zbn, yy int) (zbGmap map[int]int) {
 func zbg(zbiarr, garr []int) map[int]int {
 	var zbgmap = make(map[int]int)
 	for i := 0; i < len(zbiarr); i++ {
-		for j := i; j < len(garr); j++ {
-			zbgmap[zbiarr[j]] = garr[j]
-			break
+		for j := 0; j < len(garr); j++ {
+			if i == j {
+				zbgmap[zbiarr[j]] = garr[j]
+				break
+			}
 		}
 	}
 	return zbgmap
@@ -182,9 +172,9 @@ func reArr(arr []int) []int {
 	return rarr
 }
 
-/*#########紫白克应(生旺退煞死)#########*/
+//zbn:紫白数字 zbGmap:紫白落宫
+// 紫白克应(生旺退煞死)
 func ZiBaiShengWang(zbn int, zbGmap map[int]int) (gn int, swts string) {
-	//zbn:紫白数字 zbGmap:紫白落宫
 
 	gn = findGn(zbn, zbGmap) //gn:紫白落(原始)宫数字
 	zbwx := ZiBaiSelf(zbn)   //紫白五行
@@ -234,8 +224,6 @@ func findGnSelf(gn int) (gwx string) {
 //紫白五行属性
 func ZiBaiSelf(zbn int) (zbwx string) {
 	//k:紫白 v:五行属性
-	//	"一白": "坎水", "二黑": "坤土", "三碧": "震木", "四绿": "巽木", "五黄": "中土",
-	//	"六白": "乾金", "七赤": "兑金", "八白": "艮土", "九紫": "离火",
 	wx := []string{"木", "火", "土", "金", "水"}
 	zbmap := map[int]string{1: "坎水", 2: "坤土", 3: "震木", 4: "巽木", 5: "中土", 6: "乾金", 7: "兑金", 8: "艮土", 9: "离火"}
 	for k, v := range zbmap {

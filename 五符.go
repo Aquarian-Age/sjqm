@@ -1,4 +1,4 @@
-package qm
+package sjqm
 
 import (
 	"fmt"
@@ -28,9 +28,11 @@ func WuFu(dgz string) []string {
 	}
 	var wfmap = make(map[string]string)
 	for k := 0; k < len(zhi); k++ {
-		for v := k; v < len(wfs); v++ {
-			wfmap[zhi[v]] = wfs[v]
-			break
+		for v := 0; v < len(wfs); v++ {
+			if k == v {
+				wfmap[zhi[v]] = wfs[v]
+				break
+			}
 		}
 	}
 	//fmt.Printf("-->五符:%v\n", wfmap)

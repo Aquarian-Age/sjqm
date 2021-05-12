@@ -1,4 +1,4 @@
-package qm
+package sjqm
 
 import (
 	"fmt"
@@ -26,12 +26,14 @@ func DiSiHu(hgz string) string {
 	//生成全部地支:建除的map键值对
 	var shmap = make(map[string]string)
 	for ji := 0; ji < len(jc); ji++ {
-		for zi := ji; zi < len(zhi); zi++ {
-			shmap[jc[ji]] = zhi[zi]
-			break
+		for zi := 0; zi < len(zhi); zi++ {
+			if ji == zi {
+				shmap[jc[ji]] = zhi[zi]
+				break
+			}
 		}
 	}
-	//fmt.Printf("shmap:%v\n", shmap)
+
 	//找地四户
 	disihu := []string{"除", "定", "危", "开"}
 	var sihumap = make(map[string]string)

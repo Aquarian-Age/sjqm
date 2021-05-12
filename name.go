@@ -1,6 +1,5 @@
 package sjqm
 
-
 ////六十甲子 0:甲子 1:乙丑 2:丙寅...59:癸亥
 var Jz60 = GetJZArr()
 
@@ -40,7 +39,7 @@ type GMap struct {
 	ZhiShiMap map[int]string `json:"zhi_shi_map"` //排盘结果的值使八门信息
 }
 
-//qm包结果信息(map)
+//qm结果信息(map)
 type QM struct {
 	DiSiHu     string   `json:"di_si_hu"`     //地四户
 	DiSiMen    string   `json:"di_si_men"`    //地私门

@@ -1,4 +1,4 @@
-package qm
+package sjqm
 
 import (
 	"fmt"
@@ -29,12 +29,13 @@ func TianMa(yj, hgz string) (tms string) {
 	}
 	//天月将落宫应都是卯 地月将即是太冲天马的方位
 	for s := 0; s < len(szhi); s++ {
-		for e := s; e < len(ezhi); e++ {
-			if strings.EqualFold(szhi[e], "卯") {
-				//fmt.Printf("-->月将%s %s时辰 天月将落%s宫位 地月将:%s\n", yj, hgz, szhi[e], ezhi[e])
-				tms = ezhi[e]
+		for e := 0; e < len(ezhi); e++ {
+			if s == e {
+				if strings.EqualFold(szhi[e], "卯") {
+					tms = ezhi[e]
+				}
+				break
 			}
-			break
 		}
 	}
 	tms = fmt.Sprintf("天马:%s", tms)
