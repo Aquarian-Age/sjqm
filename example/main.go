@@ -13,8 +13,8 @@ func main() {
 	//input := cmd.GetInPut()
 	y, m, d, h := 2021, 2, 25, 21
 	gz := cal.NewGanZhiInfo(y, m, d, h)
-	ygz := gz.YearGZ  //"辛丑" //fmt.Sprintf("%s%s", gz.YearGanM, gz.YearZhiM)
-	mgz := gz.MonthGZ //"庚寅" //fmt.Sprintf("%s%s", gz.DayGanM, gz.DayZhiM)
+	ygz := gz.YearGZ  //"辛丑"
+	mgz := gz.MonthGZ //"庚寅"
 	dgz := gz.DayGZ   //"乙未"
 	hgz := gz.HourGZ  //"乙酉"
 	cust := time.Date(y, time.Month(m), d, h, 0, 0, 0, time.Local)
