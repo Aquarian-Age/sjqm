@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sjqm</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .formclass {
+            text-align: center;
+            height: 30px;
+        }
+
+        .classy, .classm, .classd, .classh, .classqk {
+            height: 0.9cm
+        }
+
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .table tr {
+            border: none;
+        }
+
+        .table td {
+            width: 150px;
+            height: 150px;
+            border: 1px inset blue;
+        }
+
+        .table td:hover {
+            cursor: pointer;
+            border: 3px outset red;
+        }
+
+        .right {
+            position: absolute;
+            left: 30%;
+            top: 50px
+        }
+    </style>
+</head>
+<body>
+<div id="slectymd" style="text-align: center;">
+    <form action="/" class="formclass" id="form1" method="POST" name="myform"
+          onsubmit="return formonsub()">
+        <!-- 下拉年 -->
+        <select name="ly" id="yearid" class="classy" onchange="selectY()">
+            <script>
+                var d = new Date();
+                var year = d.getFullYear();
+                var yearSelect = document.getElementById("yearid");
+                for (var i = 1601; i <= 3498; i++) {
+                    var opt = document.createElement("option");
+                    opt.value = i;
+                    opt.text = i + "年";
+                    yearSelect.appendChild(opt);
+                }
+                document.body.appendChild(document.getElementById("form1"));
+
+                //默认显示本年数字
+                document.getElementsByName("ly")[0].value = year;
+            </script>
+        </select>
+        <!-- 下拉月份 -->
+        <select id="monthid" name="lm" class="classm">
+            <script>
+                var monthSelect = document.getElementById("monthid");
+                for (var i = 1; i <= 12; i++) {
+                    var opt = document.createElement("option");
+                    opt.value = i;
+                    opt.text = i + "月";
+                    monthSelect.appendChild(opt);
+                }
+                document.body.appendChild(document.getElementById("form1"));
+                document.getElementsByName("lm")[0].value = d.getMonth() + 1;
+            </script>
+        </select>
+        <!-- 下拉日期 -->
+        <select id="dayid" name="ld" class="classd">
+            <script>
+                var dSelect = document.getElementById("dayid");
+                for (var i = 1; i <= 31; i++) {
+                    var opt = document.createElement("option");
+                    opt.value = i;
+                    opt.text = i + "日";
+                    dSelect.appendChild(opt);
+                }
+                document.body.appendChild(document.getElementById("form1"));
+                document.getElementsByName("ld")[0].value = d.getDate();
+            </script>
+        </select>
+        <!-- 时辰 子时1 丑时2 寅时3... -->
+        <select id="hourid" name="lh" class="classh">
+            <script>
+                var hSelect = document.getElementById("hourid");
+                for (var i = 0; i <= 23; i++) {
+                    var opt = document.createElement("option");
+                    opt.value = i;
+                    opt.text = i + "点";
+                    hSelect.appendChild(opt);
+                }
+                document.body.appendChild(document.getElementById("form1"));
+                document.getElementsByName("lh")[0].value = d.getHours();
+            </script>
+        </select>
+        <button id="qkBtn" class="classqk" onclick="QiKe()">起课</button>
+    </form>
+</div>
+
+<!--
+ /* 4 9 2 */
+ /* 3 5 7 */
+ /* 8 1 6 */
+-->
+<table class="table">
+    <tr>
+        <td id="i4">4</td>
+        <td id="i9">9</td>
+        <td id="i2">2</td>
+    </tr>
+    <tr>
+        <td id="i3">3</td>
+        <td id="i5">5</td>
+        <td id="i7">7</td>
+    </tr>
+    <tr>
+        <td id="i8">8</td>
+        <td id="i1">1</td>
+        <td id="i6">6</td>
+    </tr>
+</table>
+
+<div class="right">
+    <p id="p2">pp</p>
+</div>
+
+<script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.2.1/jquery.min.js"></script>
+<!--  提交表单数据到服务器  -->
+<script>
+    function formonsub() {
+        //表单验证
+        var x = document.forms["form1"]["ly"].value;
+        if (x == null || x === "") {
+            alert("^_^");
+            return false;
+        }
+        if (x < 1601 || x > 3498) {
+            alert("时间范围1601-3498");
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/",
+            data: $('#form1').serialize()
+        });
+        return false;
+    }
+</script>
+<script>
+    function QiKe() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/",
+            data: $('#form1').serialize(),
+            success: function (data) {
+                const js = JSON.parse(data);
+                const p4 = document.getElementById("i4");
+                const p9 = document.getElementById("i9");
+                const p2 = document.getElementById("i2");
+
+                const p3 = document.getElementById("i3");
+                const p5 = document.getElementById("i5");
+                const p7 = document.getElementById("i7");
+
+                const p8 = document.getElementById("i8");
+                const p1 = document.getElementById("i1");
+                const p6 = document.getElementById("i6");
+
+                const infop = document.getElementById("p2")
+                infop.innerHTML =js.gzs+"<br>"+
+                    "节气:"+js.jie_qi + " " +
+                    "阴阳遁:"+js.yin_yang + "<br>" +
+                    "定局数字:"+js.jn + " " +
+                    "元:"+js.yuan + " " +
+                    "旬首:"+js.xs + "<br>" +
+                    "值符:"+js.zhifu + "<br>" +
+                    "值使:"+js.zhishi + "<br>"
+                ////九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
+                p4.innerHTML = js.g_4[0] + "<br>" + js.g_4[1] + "<br>" + js.g_4[2] + "<br>" + js.g_4[3] + "<br>" + js.g_4[4] + "<br>" + js.g_4[5];
+                p9.innerHTML = js.g_9[0] + "<br>" + js.g_9[1] + "<br>" + js.g_9[2] + "<br>" + js.g_9[3] + "<br>" + js.g_9[4] + "<br>" + js.g_9[5];
+                p2.innerHTML = js.g_2[0] + "<br>" + js.g_2[1] + "<br>" + js.g_2[2] + "<br>" + js.g_2[3] + "<br>" + js.g_2[4] + "<br>" + js.g_2[5];
+
+                p3.innerHTML = js.g_3[0] + "<br>" + js.g_3[1] + "<br>" + js.g_3[2] + "<br>" + js.g_3[3] + "<br>" + js.g_3[4] + "<br>" + js.g_3[5];
+                p5.innerHTML = js.g_5[0] + "<br>" + js.g_5[1] + "<br>" + js.g_5[2] + "<br>" + js.g_5[3] + "<br>" + js.g_5[4] + "<br>" + js.g_5[5];
+                p7.innerHTML = js.g_7[0] + "<br>" + js.g_7[1] + "<br>" + js.g_7[2] + "<br>" + js.g_7[3] + "<br>" + js.g_7[4] + "<br>" + js.g_7[5];
+
+                p8.innerHTML = js.g_8[0] + "<br>" + js.g_8[1] + "<br>" + js.g_8[2] + "<br>" + js.g_8[3] + "<br>" + js.g_8[4] + "<br>" + js.g_8[5];
+                p1.innerHTML = js.g_1[0] + "<br>" + js.g_1[1] + "<br>" + js.g_1[2] + "<br>" + js.g_1[3] + "<br>" + js.g_1[4] + "<br>" + js.g_1[5];
+                p6.innerHTML = js.g_6[0] + "<br>" + js.g_6[1] + "<br>" + js.g_6[2] + "<br>" + js.g_6[3] + "<br>" + js.g_6[4] + "<br>" + js.g_6[5];
+            },
+        })
+    }
+</script>
+<script>
+    window.onload = function () {
+        const p = document.getElementById("p2")
+        p.innerHTML = "九星 八门 暗干支 天盘奇仪 八神 地盘奇仪"
+    }
+</script>
+</body>
+</html>
