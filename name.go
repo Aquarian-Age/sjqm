@@ -17,7 +17,7 @@ type JG struct {
 type G struct {
 	JieQi   string `json:"jie_qi"`   //节气
 	YinYang string `json:"yin_yang"` //阴阳遁
-	N       int    `json:"n"`        //定局数字
+	N       int    `json:"jn"`       //定局数字
 	YUAN    string `json:"yuan"`     //元
 	XS      string `json:"xs"`       //旬首
 	ZHIFU   string `json:"zhifu"`    //值符
