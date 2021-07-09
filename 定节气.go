@@ -10,7 +10,7 @@ func FindJQ(st time.Time, jqt []time.Time, jqnames []string) (index int, jmc str
 	var begint, endt time.Time
 	//精确度统一到小时
 	st = time.Date(st.Year(), st.Month(), st.Day(), st.Hour(), 0, 0, 0, time.Local)
-	for i := 2; i < 27; i++ { //i=2从上年大寒开始 因为输入月份为农历年 i=3从立春开始 i=26本年大寒
+	for i := 0; i < 27; i++ { //i=2从上年大寒开始 因为输入月份为农历年 i=3从立春开始 i=26本年大寒
 		begint = jqt[i]
 		begint = time.Date(begint.Year(), begint.Month(), begint.Day(), begint.Hour(), 0, 0, 0, time.Local)
 		endt = jqt[i+1]
@@ -22,5 +22,6 @@ func FindJQ(st time.Time, jqt []time.Time, jqnames []string) (index int, jmc str
 			break
 		}
 	}
+
 	return
 }
