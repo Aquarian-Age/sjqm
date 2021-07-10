@@ -107,7 +107,7 @@ func main() {
 	//fmt.Printf("地私门: 六合:%s 太常:%s 太阴:%s\n", dsmap["六合"], dsmap["太常"], dsmap["太阴"])
 	//fmt.Println(qmStruct.DiSiMen)
 	//五符
-	//fmt.Println(qmStruct.WuFu)
+	//fmt.Println(qmStruct.wuFu)
 	//天马
 	//fmt.Println(qmStruct.TianMa)
 	//孤虚

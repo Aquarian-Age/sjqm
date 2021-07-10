@@ -2,7 +2,7 @@ package sjqm
 
 //QM结构体 yjZhi:月将对应的地支
 func NewQM(yjZhi, dgz, hgz string) *QM {
-	qmap := new(QM)
+	///qmap := new(QM)
 	siHus := DiSiHu(hgz)
 	diSiMens := DiSiMen(yjZhi, dgz, hgz)
 	tms := TianMa(yjZhi, hgz)
@@ -10,7 +10,7 @@ func NewQM(yjZhi, dgz, hgz string) *QM {
 	wuFusArr := WuFu(dgz)
 	gux := GuXuH(dgz, hgz)
 
-	qmap = &QM{
+	qmap := &QM{
 		DiSiHu:     siHus,
 		DiSiMen:    diSiMens,
 		TianMa:     tms,

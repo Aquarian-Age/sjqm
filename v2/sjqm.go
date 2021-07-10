@@ -7,13 +7,15 @@ import (
 
 //九宫排盘结果信息
 type SJQM struct {
-	JieQi   string `json:"jie_qi"`   //节气
-	YinYang string `json:"yin_yang"` //阴阳遁
-	N       int    `json:"jn"`       //定局数字
-	YUAN    string `json:"yuan"`     //元
-	XS      string `json:"xs"`       //旬首
-	ZHIFU   string `json:"zhifu"`    //值符
-	ZHISHI  string `json:"zhishi"`   //值使
+	ygz, mgz, dgz, hgz string
+	YjZhi, YjName, Yjt string
+	JieQi              string `json:"jie_qi"`   //节气
+	YinYang            string `json:"yin_yang"` //阴阳遁
+	N                  int    `json:"jn"`       //定局数字
+	YUAN               string `json:"yuan"`     //元
+	XS                 string `json:"xs"`       //旬首
+	ZHIFU              string `json:"zhifu"`    //值符
+	ZHISHI             string `json:"zhishi"`   //值使
 
 	G1 []string `json:"g_1"` //一宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
 	G2 []string `json:"g_2"` //二宫 九星 八门 暗干支 天盘奇仪 八神 地盘奇仪
@@ -28,8 +30,11 @@ type SJQM struct {
 
 func NewSjqm(y, m, d, h int) *SJQM {
 	gzo := gz.NewGanZhi(y, m, d, h)
+	ygz := gzo.YGZ
+	mgz := gzo.MGZ
 	dgz := gzo.DGZ
 	hgz := gzo.HGZ
+	yjzhi, yjname, yjzt := gzo.GetYueJiangName(y, m, d)
 	st := time.Date(y, time.Month(m), d, h, 0, 0, 0, time.Local)
 
 	//定节气
@@ -88,6 +93,13 @@ func NewSjqm(y, m, d, h int) *SJQM {
 	arr9 = append(arr9, starmap[9], zhishimap[9], agzmap[9], starQYmap[9], bsmap[9], sqly[9]) //九宫信息
 
 	obj := &SJQM{
+		ygz:     ygz,
+		mgz:     mgz,
+		dgz:     dgz,
+		hgz:     hgz,
+		YjZhi:   yjzhi,
+		YjName:  yjname,
+		Yjt:     yjzt.Format("2006-01-02"),
 		JieQi:   jmc,
 		YinYang: yy,
 		N:       juN,
@@ -106,4 +118,34 @@ func NewSjqm(y, m, d, h int) *SJQM {
 		G9:      arr9,
 	}
 	return obj
+}
+
+//地四户
+func (qm *SJQM) DiSiHu() string {
+	return diSiHu(qm.hgz)
+}
+
+//地私门
+func (qm *SJQM) DiSiMen() string {
+	return diSiMen(qm.YjZhi, qm.dgz, qm.hgz)
+}
+
+//太冲天马
+func (qm *SJQM) TaiChongTianMa() string {
+	return tianMa(qm.YjZhi, qm.hgz)
+}
+
+//天三门
+func (qm *SJQM) TianSanMen() string {
+	return tianSanMen(qm.YjZhi, qm.hgz)
+}
+
+//五符
+func (qm *SJQM) WuFu() []string {
+	return wuFu(qm.dgz)
+}
+
+//时孤虚
+func (qm *SJQM) GuXuH() string {
+	return guXuH(qm.dgz, qm.hgz)
 }
